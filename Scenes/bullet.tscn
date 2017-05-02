@@ -20,7 +20,6 @@ texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
-editor/display_folded = true
 transform/scale = Vector2( 0.15, 0.15 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
@@ -30,6 +29,8 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision/layers = 0
+collision/mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 

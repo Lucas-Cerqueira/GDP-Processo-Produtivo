@@ -17,7 +17,7 @@ speed = 200
 
 texture = ExtResource( 2 )
 
-[node name="shoot_from" type="Position2D" parent="."]
+[node name="shoot_from" type="Position2D" parent="Sprite"]
 
 transform/pos = Vector2( 31.9812, 0 )
 
@@ -34,6 +34,7 @@ angular_damp = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 
+visibility/visible = false
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
