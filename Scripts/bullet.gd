@@ -21,12 +21,18 @@ func _on_Area2D_area_enter( area ):
 		return
 	
 	hit = true
-	print ("Deu dano")
-	area.get_parent().Take_hit(bullet_damage)
+	area.get_parent().TakeHit(bullet_damage)
 	set_process(false)
 	self.queue_free()
 
 
-func _on_bullet_Timer_timeout():
+func _on_VisibilityNotifier2D_exit_viewport( viewport ):
+	#print ("Bullet destroyed")
 	set_process(false)
 	self.queue_free()
+
+
+func _on_bulletLifeTime_timeout():
+	pass
+	#set_process(false)
+	#self.queue_free()

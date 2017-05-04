@@ -11,8 +11,8 @@ extents = Vector2( 33.2093, 33.2005 )
 [node name="Bullet" type="Node2D"]
 
 script/script = ExtResource( 1 )
-bullet_speed = 300
-bullet_damage = 25
+bullet_speed = 200
+bullet_damage = 50
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -20,6 +20,7 @@ texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
+editor/display_folded = true
 transform/scale = Vector2( 0.15, 0.15 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
@@ -38,15 +39,21 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="bullet_lifeTime" type="Timer" parent="."]
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+rect = Rect2( -10, -10, 20, 20 )
+
+[node name="bulletLifeTime" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 2.0
+wait_time = 1.0
 one_shot = false
-autostart = true
+autostart = false
 
 [connection signal="area_enter" from="Area2D" to="." method="_on_Area2D_area_enter"]
 
-[connection signal="timeout" from="bullet_lifeTime" to="." method="_on_bullet_Timer_timeout"]
+[connection signal="exit_viewport" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_exit_viewport"]
+
+[connection signal="timeout" from="bulletLifeTime" to="." method="_on_bulletLifeTime_timeout"]
 
 

@@ -11,10 +11,12 @@ extents = Vector2( 31.9128, 31.9172 )
 [node name="Player" type="Node2D"]
 
 script/script = ExtResource( 1 )
+maxHealth = 100
 speed = 200
 
 [node name="Sprite" type="Sprite" parent="."]
 
+editor/display_folded = true
 texture = ExtResource( 2 )
 
 [node name="shoot_from" type="Position2D" parent="Sprite"]
@@ -31,6 +33,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision/mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 
