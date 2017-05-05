@@ -28,7 +28,6 @@ tile_data = IntArray( 131098, 2, 131101, 3, 196633, 2, 196638, 3, 720896, 0, 720
 [node name="Player2D" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 1002.05, 318.879 )
-transform/scale = Vector2( 1, 1 )
 maxHealth = 200
 GRAVITY = 800
 jumpSpeed = 300
@@ -57,14 +56,14 @@ drag_margin/bottom = 0.2
 [node name="EnemySpawner" parent="." instance=ExtResource( 3 )]
 
 process/pause_mode = 1
-transform/pos = Vector2( -55.4812, 0 )
-numberOfEnemies = 0
+transform/pos = Vector2( -55.4812, 318 )
+numberOfEnemies = 4
 
 [node name="EnemySpawner1" parent="." instance=ExtResource( 3 )]
 
 process/pause_mode = 1
-transform/pos = Vector2( 2100, 0 )
-numberOfEnemies = 0
+transform/pos = Vector2( 2100, 318 )
+numberOfEnemies = 4
 
 [node name="Sprite1" type="Sprite" parent="."]
 
