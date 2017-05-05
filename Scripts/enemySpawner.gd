@@ -7,9 +7,12 @@ var spawnedEnemies = 0
 
 func _ready():
 	timer = get_node("SpawnDelay")
-	timer.start()
+	SpawnEnemy()
 
 func _on_SpawnDelay_timeout():
+	SpawnEnemy()
+	
+func SpawnEnemy():
 	if (spawnedEnemies < numberOfEnemies):
 		var enemy = preload("res://Scenes/enemy.tscn").instance()
 		add_child(enemy)

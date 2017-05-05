@@ -1,12 +1,15 @@
-extends Node2D
+extends KinematicBody2D
 
 export var maxHealth = 100
 export var speed = 100
+export var gravity = 200
+export var jumpSpeed = 500
 
 var health
 var direction = Vector2(0.0, 0.0)
 var last_dir = 1
 
+var grounded = false
 var shooting = false
 var previous_shooting = false
 
@@ -19,7 +22,7 @@ func _ready():
 	camera = get_node("Camera2D")
 	
 	# Spawn the player at half of the level limit
-	set_global_pos(Vector2(camera.get_limit(2)/2.0, 0))
+	#set_global_pos(Vector2(camera.get_limit(2)/2.0, 0))
 	
 	set_fixed_process(true)
 	set_process_input(true)
@@ -34,26 +37,37 @@ func _fixed_process(delta):
 	# Handle player movement
 	var player_pos = get_pos()
 	if Input.is_action_pressed("move_left") and (player_pos.x-sprite_size/2 > camera_limit_left):
-		direction.x = -1.0
+		direction.x = -speed
 		last_dir = -1
 		get_node("Sprite").set_scale(Vector2(-1.0,1.0))
 		
 	elif Input.is_action_pressed("move_right") and (player_pos.x+sprite_size/2 < camera_limit_right):
-		direction.x = 1.0
+		direction.x = speed
 		last_dir = 1
 		get_node("Sprite").set_scale(Vector2(1.0,1.0))
 		
 	else:
 		direction.x = 0.0
 		
-	player_pos += direction * speed * delta
-	set_pos(player_pos)
-	
+	direction.y = gravity
+	#print (grounded)
+		
+	if (grounded and Input.is_action_pressed("jump")):
+		grounded = false
+		direction.y = -jumpSpeed
+		
+	var motion = move (direction * delta)
+	if (is_colliding()):
+		var n = get_collision_normal()
+		motion = n.slide(motion)
+		move(motion)
+
 	# Handle player shooting
 	shooting = Input.is_action_pressed("shoot")
 	if (shooting and not previous_shooting):
 		Shoot()
 		
+	
 	previous_shooting = shooting
 
 func Shoot ():
@@ -70,3 +84,12 @@ func TakeHit (damage):
 		health = maxHealth
 		set_global_pos(Vector2(camera.get_limit(2)/2.0, 0))
 	
+
+
+func _on_GroundDetector_area_enter( area ):
+	print ("Entrou")
+	grounded = true
+
+
+func _on_GroundDetector_area_exit( area ):
+	grounded = false
