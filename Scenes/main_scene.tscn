@@ -11,7 +11,7 @@
 
 mode = 0
 tile_set = ExtResource( 1 )
-cell/size = Vector2( 50, 50 )
+cell/size = Vector2( 32, 32 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 cell/half_offset = 2
@@ -23,15 +23,19 @@ collision/bounce = 0.0
 collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
-tile_data = IntArray( 262143, 0, 196624, 0, 196648, 0, 262144, 1, 262145, 1, 262146, 1, 262147, 1, 262148, 1, 262149, 1, 262150, 1, 262151, 1, 262152, 1, 262153, 1, 262154, 1, 262155, 1, 262156, 1, 262157, 1, 262158, 1, 262159, 1, 262160, 1, 262161, 1, 262162, 1, 262163, 1, 262164, 1, 262165, 1, 262166, 1, 262167, 1, 262168, 1, 262169, 1, 262170, 1, 262171, 1, 262172, 1, 262173, 1, 262174, 1, 262175, 1, 262176, 1, 262177, 1, 262178, 1, 262179, 1, 262180, 1, 262181, 1, 262182, 1, 262183, 1 )
+tile_data = IntArray( 131098, 2, 131101, 3, 196633, 2, 196638, 3, 720896, 0, 720897, 0, 720898, 0, 720899, 0, 720900, 0, 720901, 0, 720902, 0, 720903, 0, 720904, 0, 720905, 0, 720906, 0, 720907, 0, 720908, 0, 720909, 0, 720910, 0, 720911, 0, 720912, 0, 720913, 0, 720914, 0, 720915, 0, 720916, 0, 720917, 0, 720918, 0, 720919, 0, 720920, 0, 720921, 0, 720922, 0, 720923, 0, 720924, 0, 720925, 0, 720926, 0, 720927, 0, 720928, 0, 720929, 0, 720930, 0, 720931, 0, 720932, 0, 720933, 0, 720934, 0, 720935, 0, 720936, 0, 720937, 0, 720938, 0, 720939, 0, 720940, 0, 720941, 0, 720942, 0, 720943, 0, 720944, 0, 720945, 0, 720946, 0, 720947, 0, 720948, 0, 720949, 0, 720950, 0, 720951, 0, 720952, 0, 720953, 0, 720954, 0, 720955, 0, 720956, 0, 720957, 0, 720958, 0 )
 
 [node name="Player2D" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 1022.04, -65.0706 )
+transform/pos = Vector2( 1002.05, 318.879 )
+transform/scale = Vector2( 1, 1 )
 maxHealth = 200
+GRAVITY = 800
+jumpSpeed = 300
 
 [node name="Camera2D" type="Camera2D" parent="Player2D"]
 
+transform/pos = Vector2( 0, -235.303 )
 anchor_mode = 1
 rotating = false
 current = true
@@ -40,6 +44,7 @@ limit/left = 0
 limit/top = -10000000
 limit/right = 2000
 limit/bottom = 10000000
+limit/smoothed = false
 drag_margin/h_enabled = true
 drag_margin/v_enabled = true
 smoothing/enable = false
@@ -53,11 +58,13 @@ drag_margin/bottom = 0.2
 
 process/pause_mode = 1
 transform/pos = Vector2( -55.4812, 0 )
+numberOfEnemies = 0
 
 [node name="EnemySpawner1" parent="." instance=ExtResource( 3 )]
 
 process/pause_mode = 1
 transform/pos = Vector2( 2100, 0 )
+numberOfEnemies = 0
 
 [node name="Sprite1" type="Sprite" parent="."]
 
