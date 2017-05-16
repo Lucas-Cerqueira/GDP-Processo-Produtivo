@@ -6,6 +6,7 @@ export var ACCELERATION = 0.5
 export var GRAVITY = 500
 export var jumpSpeed = 500
 
+
 var health
 var velocity = Vector2(0.0, 0.0)
 var last_dir = 1
@@ -31,8 +32,8 @@ func _ready():
 	
 
 func _fixed_process(delta):
-	
 	MoveCharacter(delta)
+
 	
 	# Handle player shooting
 	var shooting = Input.is_action_pressed("shoot")
@@ -48,32 +49,35 @@ func _fixed_process(delta):
 	
 
 func MoveCharacter(delta):
-	var camera_limit_left = camera.get_limit(0)
-	var camera_limit_right = camera.get_limit(2)
-	var sprite_size = (get_node("Sprite").get_item_rect().size[0])
 	
+	velocity.y += GRAVITY*delta
 	# Adds gravity and make the player jump
-	velocity.y += GRAVITY * delta
-	if (grounded and Input.is_action_pressed("jump")):
+	if (grounded && Input.is_action_pressed("jump")):
 		grounded = false
 		velocity.y = -jumpSpeed
 
-	velocity = move_and_slide (velocity, Vector2(0.0,-1.0), 20)
-	
+	var movement = 0
 #	# Handle player movingsideways
-	var movement = 0.0
-	var player_pos = get_pos()
-	if Input.is_action_pressed("move_left") and (player_pos.x-sprite_size/2 > camera_limit_left):
+	if Input.is_action_pressed("move_left"):
 		movement -= speed
+		#velocity.x = -speed
 		last_dir = -1
 		get_node("Sprite").set_scale(Vector2(-1.0,1.0))
 		
-	elif Input.is_action_pressed("move_right") and (player_pos.x+sprite_size/2 < camera_limit_right):
+	elif Input.is_action_pressed("move_right"):
 		movement += speed
+		#velocity.x = speed
 		last_dir = 1
 		get_node("Sprite").set_scale(Vector2(1.0,1.0))
 	
-	velocity.x = lerp (velocity.x, movement, ACCELERATION)   # Interpolates between current and target velocity
+	velocity.x = movement
+	var motion = velocity * delta
+	motion = move (motion)
+	if (is_colliding()):
+		var n =  get_collision_normal()
+		motion = n.slide(motion)
+		velocity = n.slide(velocity)
+		move(motion)
 
 func Shoot ():
 	var bullet = preload("res://Scenes/bullet.tscn").instance()
@@ -91,6 +95,7 @@ func TakeHit (damage):
 		# Respawn
 		health = maxHealth
 		set_global_pos(Vector2(camera.get_limit(2)/2.0, 0))
+
 
 
 func _on_GroundDetector_body_enter( body ):

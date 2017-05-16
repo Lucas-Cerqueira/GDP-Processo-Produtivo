@@ -16,15 +16,14 @@ func  SetDirection (d):
 	if (d == 1 or d == -1):
 		direction = d
 
-func _on_Area2D_area_enter( area ):
+func _on_Area2D_body_enter( body ):
 	if (hit == true):
 		return
 	
 	hit = true
-	area.get_parent().TakeHit(bullet_damage)
+	body.TakeHit(bullet_damage)
 	set_process(false)
 	self.queue_free()
-
 
 func _on_VisibilityNotifier2D_exit_viewport( viewport ):
 	#print ("Bullet destroyed")

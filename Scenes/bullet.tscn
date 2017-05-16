@@ -11,7 +11,7 @@ extents = Vector2( 33.2093, 33.2005 )
 [node name="Bullet" type="Node2D"]
 
 script/script = ExtResource( 1 )
-bullet_speed = 400
+bullet_speed = 600
 bullet_damage = 50
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -20,7 +20,6 @@ texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
-editor/display_folded = true
 transform/scale = Vector2( 0.15, 0.15 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
@@ -50,7 +49,7 @@ wait_time = 1.0
 one_shot = false
 autostart = false
 
-[connection signal="area_enter" from="Area2D" to="." method="_on_Area2D_area_enter"]
+[connection signal="body_enter" from="Area2D" to="." method="_on_Area2D_body_enter"]
 
 [connection signal="exit_viewport" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_exit_viewport"]
 

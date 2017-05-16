@@ -1,16 +1,23 @@
 [gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Scripts/enemy.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/enemy_sprite.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/enemy_m_looking_right.png" type="Texture" id=2]
 [ext_resource path="res://Animations/enemy_attack.tres" type="Animation" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32.0245, 31.8831 )
+extents = Vector2( 11.7807, 27.6538 )
 
-[node name="Enemy" type="Node2D"]
+[node name="Enemy" type="KinematicBody2D"]
 
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 0.916941, 0, 0.948811 )
+shapes/0/trigger = false
+collision/layers = 2
+collision/mask = 6
+collision/margin = 0.08
 script/script = ExtResource( 1 )
 maxHealth = 100
 speed = 100
@@ -21,21 +28,10 @@ attackRange = 50
 
 texture = ExtResource( 2 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-input/pickable = true
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-collision/layers = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-
-visibility/visible = false
+transform/pos = Vector2( 0, 0.948811 )
+transform/scale = Vector2( 1, 0.916941 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
