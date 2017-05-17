@@ -55,7 +55,7 @@ func HuntPlayer(delta):
 	if (is_colliding()):
 		var n =  get_collision_normal()
 		motion = n.slide(motion)
-		velocity = n.slide(velocity)
+		velocity = n.slide(velocity) #Qual a necessidade de mudar velocity?2
 		move(motion)
 
 func AttackPlayer():
@@ -65,6 +65,7 @@ func AttackPlayer():
 func TakeHit (damage):
 	health -= damage
 	if health <= 0:
-		set_process(false)
-		self.queue_free()
+		#Antes aqui estava com set_process, o que não fazia nada já que aqui usamos fixed_process ~~
+		set_fixed_process(false)
+		queue_free()
 

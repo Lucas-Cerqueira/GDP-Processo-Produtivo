@@ -52,6 +52,16 @@ func _fixed_process(delta):
 	
 
 func MoveCharacter(delta):
+	#Como tentativa de consertar o flickering do personagem quando ele aterrisa as vezes,
+	#eu fiz alguns comentarios nessa função mas não acho que serviram pra ajudar alguma coisa.
+	#Então eu só fiz mudar o Collision Margin no inspector mesmo pra o menor valor possível(0.001) e 
+	# parece que foi consertado. Eu sei que tem uma razão para que nao coloquemos a margem de erro o minimo possível sempre
+	# mas eu não lembro xD (o default é 0.08)
+	
+	
+	#Em vez de armazenar uma variavel grounded, ve se nao acha melhor usar test_move( Vector2(0,1) ) 
+	#E entao só adicionar GRAVITY à velocity.y caso test_move retornasse false (quando não encontra chão)
+	#Assim elimina também a necessidade do ground detector
 	
 	velocity.y += GRAVITY*delta
 	# Adds gravity and make the player jump
@@ -60,7 +70,7 @@ func MoveCharacter(delta):
 		velocity.y = -jumpSpeed
 
 	var movement = 0
-#	# Handle player movingsideways
+	# Handle player movingsideways
 	if Input.is_action_pressed("move_left"):
 		movement -= speed
 		#velocity.x = -speed
@@ -79,7 +89,7 @@ func MoveCharacter(delta):
 	if (is_colliding()):
 		var n =  get_collision_normal()
 		motion = n.slide(motion)
-		velocity = n.slide(velocity)
+		velocity = n.slide(velocity) #Qual a necessidade de mudar velocity? Isso pode terminar tendo alguma interação com o velocity.y (velocidade de queda) alterando o velocity.x, como se fosse um escorregador lol
 		move(motion)
 
 func Shoot ():
