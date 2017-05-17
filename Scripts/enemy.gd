@@ -13,6 +13,7 @@ var player
 var playerSpriteSize
 var enemySpriteSize
 
+
 var animationPlayer
 
 func _ready():

@@ -16,16 +16,19 @@ var grounded = false
 var previous_shooting = false
 var previous_attacking = false
 
+var spawnPosition
+
 var shoot_from
 var camera
+var health_bar
 
 func _ready():
 	health = maxHealth
 	shoot_from = get_node("Sprite/shoot_from")
 	camera = get_node("Camera2D")
+	health_bar = get_node("/root/Tutorial/UI/HealthBar")
 	
-	# Spawn the player at half of the level limit
-	#set_global_pos(Vector2(camera.get_limit(2)/2.0, 0))
+	spawnPosition = get_global_pos()
 	
 	set_fixed_process(true)
 	set_process_input(true)
@@ -91,11 +94,12 @@ func Attack ():
 
 func TakeHit (damage):
 	health -= damage
+	health_bar.UpdateHealthBar (health, maxHealth)
 	if health <= 0:
 		# Respawn
 		health = maxHealth
-		set_global_pos(Vector2(camera.get_limit(2)/2.0, 0))
-
+		health_bar.UpdateHealthBar (health, maxHealth)
+		set_global_pos(spawnPosition)
 
 
 func _on_GroundDetector_body_enter( body ):

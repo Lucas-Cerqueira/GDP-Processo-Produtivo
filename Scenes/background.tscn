@@ -20,62 +20,13 @@ scroll/ignore_camera_zoom = true
 
 [node name="StarsLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
-motion/scale = Vector2( 1, 1 )
+motion/scale = Vector2( 0.2, 1 )
 motion/offset = Vector2( 0, 0 )
-motion/mirroring = Vector2( 640, 0 )
+motion/mirroring = Vector2( 0, 0 )
 
 [node name="Stars" type="TextureFrame" parent="ParallaxBackground/StarsLayer"]
 
-rect/scale = Vector2( 2, 2 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = -21.0
-margin/right = 320.0
-margin/bottom = 39.0
-texture = ExtResource( 1 )
-stretch_mode = 0
-
-[node name="Stars1" type="TextureFrame" parent="ParallaxBackground/StarsLayer"]
-
-rect/scale = Vector2( 2, 2 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 80.0
-margin/right = 320.0
-margin/bottom = 140.0
-texture = ExtResource( 1 )
-stretch_mode = 0
-
-[node name="Stars2" type="TextureFrame" parent="ParallaxBackground/StarsLayer"]
-
-rect/scale = Vector2( 2, 2 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 186.0
-margin/right = 320.0
-margin/bottom = 246.0
-texture = ExtResource( 1 )
-stretch_mode = 0
-
-[node name="CityLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-
-transform/pos = Vector2( 0, 199.504 )
-motion/scale = Vector2( 1, 1 )
-motion/offset = Vector2( 0, 0 )
-motion/mirroring = Vector2( 640, 0 )
-
-[node name="City" type="TextureFrame" parent="ParallaxBackground/CityLayer"]
-
-rect/scale = Vector2( 2, 2 )
+rect/scale = Vector2( 3, 3 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -83,7 +34,41 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 320.0
-margin/bottom = 92.0
+margin/bottom = 60.0
+texture = ExtResource( 1 )
+stretch_mode = 0
+
+[node name="Stars1" type="TextureFrame" parent="ParallaxBackground/StarsLayer"]
+
+rect/scale = Vector2( 3, 3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 151.0
+margin/right = 320.0
+margin/bottom = 211.0
+texture = ExtResource( 1 )
+stretch_mode = 0
+
+[node name="CityLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion/scale = Vector2( 0.7, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="City" type="TextureFrame" parent="ParallaxBackground/CityLayer"]
+
+rect/scale = Vector2( 3, 3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 141.0
+margin/right = 320.0
+margin/bottom = 233.0
 texture = ExtResource( 2 )
 stretch_mode = 0
 
