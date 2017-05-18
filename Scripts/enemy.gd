@@ -18,7 +18,7 @@ var animationPlayer
 
 func _ready():
 	health = maxHealth
-	player = get_node("/root/Tutorial/Player2D")
+	player = get_node("/root/main/Player2D")
 	playerSpriteSize = player.get_node("Sprite").get_item_rect().size[0]
 	enemySpriteSize = get_node("Sprite").get_item_rect().size[0]
 	animationPlayer = get_node("AnimationPlayer")
@@ -55,7 +55,6 @@ func HuntPlayer(delta):
 	if (is_colliding()):
 		var n =  get_collision_normal()
 		motion = n.slide(motion)
-		velocity = n.slide(velocity) #Qual a necessidade de mudar velocity?2
 		move(motion)
 
 func AttackPlayer():
@@ -66,6 +65,7 @@ func TakeHit (damage):
 	health -= damage
 	if health <= 0:
 		#Antes aqui estava com set_process, o que não fazia nada já que aqui usamos fixed_process ~~
+		get_node("/root/main/WaveHandler").EnemyKilled()
 		set_fixed_process(false)
 		queue_free()
 

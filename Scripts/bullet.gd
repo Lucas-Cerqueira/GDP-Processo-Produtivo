@@ -18,6 +18,7 @@ func  SetDirection (d):
 
 func _on_Area2D_body_enter( body ):
 	#Qual a necessidade dessa variavel?
+	# Lucas: Tava pegando o hit mais de uma vez
 	if (hit == true):
 		return
 	hit = true
@@ -31,15 +32,6 @@ func _on_Area2D_body_enter( body ):
 	self.queue_free()
 
 
-
-#Po, nunca usei esse VisibilityNotifier2D xD Sempre optei para que só o lifetime bastasse
-func _on_VisibilityNotifier2D_exit_viewport( viewport ):
-	#print ("Bullet destroyed")
+func _on_bulletLifeTime_timeout():
 	set_process(false)
 	self.queue_free()
-
-
-func _on_bulletLifeTime_timeout():
-	pass
-	#set_process(false)
-	#self.queue_free()

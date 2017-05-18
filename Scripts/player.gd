@@ -6,6 +6,7 @@ export var ACCELERATION = 0.5
 export var GRAVITY = 500
 export var jumpSpeed = 500
 
+onready var bullet_res = preload("res://Scenes/bullet.tscn")
 
 var health
 var velocity = Vector2(0.0, 0.0)
@@ -26,7 +27,7 @@ func _ready():
 	health = maxHealth
 	shoot_from = get_node("Sprite/shoot_from")
 	camera = get_node("Camera2D")
-	health_bar = get_node("/root/Tutorial/UI/HealthBar")
+	health_bar = get_node("/root/main/UI/HealthBar")
 	
 	spawnPosition = get_global_pos()
 	
@@ -64,6 +65,7 @@ func MoveCharacter(delta):
 	#Assim elimina também a necessidade do ground detector
 	
 	velocity.y += GRAVITY*delta
+	grounded = test_move(Vector2(0,1))
 	# Adds gravity and make the player jump
 	if (grounded && Input.is_action_pressed("jump")):
 		grounded = false
@@ -73,13 +75,11 @@ func MoveCharacter(delta):
 	# Handle player movingsideways
 	if Input.is_action_pressed("move_left"):
 		movement -= speed
-		#velocity.x = -speed
 		last_dir = -1
 		get_node("Sprite").set_scale(Vector2(-1.0,1.0))
 		
 	elif Input.is_action_pressed("move_right"):
 		movement += speed
-		#velocity.x = speed
 		last_dir = 1
 		get_node("Sprite").set_scale(Vector2(1.0,1.0))
 	
@@ -93,7 +93,7 @@ func MoveCharacter(delta):
 		move(motion)
 
 func Shoot ():
-	var bullet = preload("res://Scenes/bullet.tscn").instance()
+	var bullet = bullet_res.instance()
 	
 	get_tree().get_root().add_child(bullet)
 	bullet.set_global_pos(shoot_from.get_global_pos())
@@ -110,10 +110,3 @@ func TakeHit (damage):
 		health = maxHealth
 		health_bar.UpdateHealthBar (health, maxHealth)
 		set_global_pos(spawnPosition)
-
-
-func _on_GroundDetector_body_enter( body ):
-	grounded = true
-
-func _on_GroundDetector_body_exit( body ):
-	grounded = false
