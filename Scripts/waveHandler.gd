@@ -14,7 +14,7 @@ func _ready():
 	set_process(true)
 
 func _process(delta):
-	waveInfo.text = "Wave: "+ str(waveNumber) + "\nEnemies: " + str(enemiesLeft)
+	waveInfo.text = "Wave: "+ str(waveNumber) + "\nEnemies left: " + str(enemiesLeft)
 
 func GetWaveNumber():
 	return waveNumber

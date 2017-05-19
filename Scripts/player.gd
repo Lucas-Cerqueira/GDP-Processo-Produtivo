@@ -72,16 +72,18 @@ func MoveCharacter(delta):
 		velocity.y = -jumpSpeed
 
 	var movement = 0
+	var scale = get_node("Sprite").get_scale()
 	# Handle player movingsideways
 	if Input.is_action_pressed("move_left"):
 		movement -= speed
 		last_dir = -1
-		get_node("Sprite").set_scale(Vector2(-1.0,1.0))
+		
+		get_node("Sprite").set_scale(Vector2(-abs(scale.x),scale.y))
 		
 	elif Input.is_action_pressed("move_right"):
 		movement += speed
 		last_dir = 1
-		get_node("Sprite").set_scale(Vector2(1.0,1.0))
+		get_node("Sprite").set_scale(Vector2(abs(scale.x),scale.y))
 	
 	velocity.x = movement
 	var motion = velocity * delta
