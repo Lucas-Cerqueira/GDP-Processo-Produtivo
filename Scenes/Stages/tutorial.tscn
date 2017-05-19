@@ -115,7 +115,6 @@ max_lines_visible = -1
 
 [node name="Player2D" parent="." instance=ExtResource( 6 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 480, 380 )
 jumpSpeed = 230
 

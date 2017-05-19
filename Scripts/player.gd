@@ -31,7 +31,7 @@ func _ready():
 	
 	set_fixed_process(true)
 	set_process_input(true)
-	
+	OS.set_window_title("The Last Angel")
 
 func _fixed_process(delta):
 	MoveCharacter(delta)
