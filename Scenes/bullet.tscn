@@ -11,8 +11,6 @@ extents = Vector2( 31.4639, 33.2005 )
 [node name="Bullet" type="Node2D"]
 
 script/script = ExtResource( 1 )
-bullet_speed = 600
-bullet_damage = 50
 
 [node name="Sprite" type="Sprite" parent="."]
 

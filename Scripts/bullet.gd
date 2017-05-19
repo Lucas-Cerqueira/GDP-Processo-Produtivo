@@ -1,16 +1,15 @@
 extends Node2D
 
-export var bullet_speed = 300
-export var bullet_damage = 25
-
 var direction = 1
 var hit = false
+
+onready var GlobalVariables = get_node("/root/GlobalVariables")
 
 func _ready():
 	set_process(true)
 
 func _process(delta):
-	translate (Vector2(bullet_speed*delta*direction, 0))
+	translate (Vector2(GlobalVariables.playerBlastSpeed*delta*direction, 0))
 
 func  SetDirection (d):
 	if (d == 1 or d == -1):
@@ -27,7 +26,7 @@ func _on_Area2D_body_enter( body ):
 	#Nao sei exatamente o pq isso acontece lol
 	get_node("Area2D").queue_free()
 	
-	body.TakeHit(bullet_damage)
+	body.TakeHit(GlobalVariables.playerBlastDamage)
 	set_process(false)
 	self.queue_free()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://Scenes/background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/background_1_sky.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/waveHandler.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/enemySpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://icon.png" type="Texture" id=9]
 
 [node name="main" type="Node"]
 
@@ -117,8 +118,6 @@ max_lines_visible = -1
 
 editor/display_folded = true
 transform/pos = Vector2( 480, 380 )
-maxHealth = 200
-GRAVITY = 600
 jumpSpeed = 230
 
 [node name="Camera2D" type="Camera2D" parent="Player2D"]
@@ -158,5 +157,10 @@ process/pause_mode = 1
 transform/pos = Vector2( 1570, 360 )
 numberOfEnemies = IntArray( 5, 10, 15 )
 enabled = true
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( 444.147, 133.244 )
+texture = ExtResource( 9 )
 
 

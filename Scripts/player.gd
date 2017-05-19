@@ -1,9 +1,5 @@
 extends KinematicBody2D
 
-export var maxHealth = 100
-export var speed = 100
-export var ACCELERATION = 0.5
-export var GRAVITY = 500
 export var jumpSpeed = 500
 
 onready var bullet_res = preload("res://Scenes/bullet.tscn")
@@ -23,8 +19,10 @@ var shoot_from
 var camera
 var health_bar
 
+onready var GlobalVariables = get_node("/root/GlobalVariables")
+
 func _ready():
-	health = maxHealth
+	health = GlobalVariables.playerMaxHealth
 	shoot_from = get_node("Sprite/shoot_from")
 	camera = get_node("Camera2D")
 	health_bar = get_node("/root/main/UI/HealthBar")
@@ -37,7 +35,6 @@ func _ready():
 
 func _fixed_process(delta):
 	MoveCharacter(delta)
-
 	
 	# Handle player shooting
 	var shooting = Input.is_action_pressed("shoot")
@@ -60,11 +57,7 @@ func MoveCharacter(delta):
 	# mas eu não lembro xD (o default é 0.08)
 	
 	
-	#Em vez de armazenar uma variavel grounded, ve se nao acha melhor usar test_move( Vector2(0,1) ) 
-	#E entao só adicionar GRAVITY à velocity.y caso test_move retornasse false (quando não encontra chão)
-	#Assim elimina também a necessidade do ground detector
-	
-	velocity.y += GRAVITY*delta
+	velocity.y += GlobalVariables.gravity*delta
 	grounded = test_move(Vector2(0,1))
 	# Adds gravity and make the player jump
 	if (grounded && Input.is_action_pressed("jump")):
@@ -75,13 +68,13 @@ func MoveCharacter(delta):
 	var scale = get_node("Sprite").get_scale()
 	# Handle player movingsideways
 	if Input.is_action_pressed("move_left"):
-		movement -= speed
+		movement -= GlobalVariables.playerSpeed
 		last_dir = -1
 		
 		get_node("Sprite").set_scale(Vector2(-abs(scale.x),scale.y))
 		
 	elif Input.is_action_pressed("move_right"):
-		movement += speed
+		movement += GlobalVariables.playerSpeed
 		last_dir = 1
 		get_node("Sprite").set_scale(Vector2(abs(scale.x),scale.y))
 	
@@ -96,7 +89,6 @@ func MoveCharacter(delta):
 
 func Shoot ():
 	var bullet = bullet_res.instance()
-	
 	get_tree().get_root().add_child(bullet)
 	bullet.set_global_pos(shoot_from.get_global_pos())
 	bullet.SetDirection (last_dir)
@@ -106,9 +98,10 @@ func Attack ():
 
 func TakeHit (damage):
 	health -= damage
-	health_bar.UpdateHealthBar (health, maxHealth)
-	if health <= 0:
+	health_bar.UpdateHealthBar (health, GlobalVariables.playerMaxHealth)
+	if (health <= 0):
 		# Respawn
+		var maxHealth = GlobalVariables.playerMaxHealth
 		health = maxHealth
 		health_bar.UpdateHealthBar (health, maxHealth)
 		set_global_pos(spawnPosition)
