@@ -31,7 +31,9 @@ func _input(event):
 			get_node("Sprite/Selection").set_pos(Vector2(x,y))
 	if event.is_action("ui_accept") && event.is_pressed() && !event.is_echo():
 		if (index == 0):
-			get_tree().change_scene("res://Scenes/Stages/tutorial.tscn")
+			#Lucas: Mudei para usar esse script em todas as mudanças de cena porque ele toma uns cuidados extras
+			get_node("/root/changeScene").goto_scene("res://Scenes/Stages/tutorial.tscn")
+			#get_tree().change_scene("res://Scenes/Stages/tutorial.tscn")
 			print("New Game")
 		if (index == 1):
 			print("Options")
