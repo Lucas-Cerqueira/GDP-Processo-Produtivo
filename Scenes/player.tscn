@@ -18,7 +18,7 @@ custom_solver_bias = 0.0
 radius = 10.0
 height = 20.0
 
-[sub_resource type="ColorRamp" id=3]
+[sub_resource type="ColorRamp" id=2]
 
 offsets = FloatArray( 0, 0.00358423, 1 )
 colors = ColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
@@ -136,7 +136,7 @@ params/final_size = 0.02
 params/hue_variation = 0.0
 params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
-color/color_ramp = SubResource( 3 )
+color/color_ramp = SubResource( 2 )
 
 [node name="SmokeLeft" type="Particles2D" parent="ParticlesWrath"]
 
@@ -162,7 +162,7 @@ params/final_size = 0.02
 params/hue_variation = 0.0
 params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
-color/color_ramp = SubResource( 3 )
+color/color_ramp = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

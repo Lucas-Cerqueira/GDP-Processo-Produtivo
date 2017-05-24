@@ -15,6 +15,7 @@ var enemySpriteSize
 
 var target
 
+onready var bloodParticles = get_node("Sprite/BloodParticles")
 onready var lazinessParticles = get_node("LazinessParticles")
 onready var GlobalVariables = get_node("/root/GlobalVariables")
 var animationPlayer
@@ -95,11 +96,11 @@ func AttackTarget():
 
 func TakeHit (hit):
 	health -= hit
+	bloodParticles.set_emitting(true)
 	if health <= 0:
 		#Antes aqui estava com set_process, o que não fazia nada já que aqui usamos fixed_process ~~
 		var waveHandler = get_node("/root/main/WaveHandler")
 		if (waveHandler):
 			waveHandler.EnemyKilled()
 		set_fixed_process(false)
-		queue_free()
-
+		animationPlayer.play("enemyDeath")

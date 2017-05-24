@@ -22,10 +22,8 @@ func SpawnDecoy():
 	currentDecoy = decoy_res.instance()
 	var player_pos = get_parent().get_parent().get_global_pos()
 	randomize()
-	var direction = randi()%2
-	if (direction == 0): # Left
-		direction = -1
-	var distance = rand_range (0, spawnRange)
+	var direction = get_parent().get_parent().get_node("Sprite").get_scale().x
+	var distance = rand_range (100, spawnRange)
 	currentDecoy.set_global_pos (player_pos + direction*Vector2(distance,0))
 	get_tree().get_root().add_child(currentDecoy)
 	

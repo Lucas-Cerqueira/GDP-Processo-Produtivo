@@ -3,7 +3,7 @@ extends Node
 var playerMaxHealth = 100
 var playerSpeed = 200
 var playerMeleeDamage = 25
-var playerBlastDamage = 50
+var playerBlastDamage = 25
 var playerBlastSpeed = 600
 
 var enemyTarget
