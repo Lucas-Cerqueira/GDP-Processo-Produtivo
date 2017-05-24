@@ -1,6 +1,14 @@
-[gd_resource type="SpriteFrames" load_steps=2 format=1]
+[gd_resource type="SpriteFrames" load_steps=10 format=1]
 
 [ext_resource path="res://Sprites/enemy_m.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/enemy_m_running/enemy_m_running1.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/enemy_m_running/enemy_m_running2.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/enemy_m_running/enemy_m_running3.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/enemy_m_running/enemy_m_running4.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/enemy_m_running/enemy_m_running5.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/enemy_m_running/enemy_m_running6.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/enemy_m_running/enemy_m_running7.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/enemy_m_running/enemy_m_running8.png" type="Texture" id=9]
 
 [resource]
 
@@ -10,9 +18,9 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "run",
-"speed": 5.0
+"speed": 12.0
 } ]
 
