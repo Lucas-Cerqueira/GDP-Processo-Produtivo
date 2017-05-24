@@ -1,5 +1,6 @@
 extends Node2D
 
+export var enemyType = preload("res://Scenes/Enemies/mEnemy.tscn")
 export(IntArray) var numberOfEnemies = [5, 10, 15]
 export var enabled = true
 

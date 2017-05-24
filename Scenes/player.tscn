@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://Scripts/player.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/henry_looking_right.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/henry.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Skills/skillHandler.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Skills/skillLaziness.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Skills/skillWrath.gd" type="Script" id=5]
@@ -17,6 +17,20 @@
 custom_solver_bias = 0.0
 radius = 10.0
 height = 20.0
+
+[sub_resource type="SpriteFrames" id=3]
+
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+} ]
 
 [sub_resource type="ColorRamp" id=2]
 
@@ -36,9 +50,11 @@ collision/margin = 0.0
 script/script = ExtResource( 1 )
 jumpSpeed = 1000
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="AnimatedSprite" parent="."]
 
-texture = ExtResource( 2 )
+transform/scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 3 )
+animation = "idle"
 
 [node name="shoot_from" type="Position2D" parent="Sprite"]
 
@@ -95,6 +111,7 @@ autostart = false
 
 editor/display_folded = true
 script/script = ExtResource( 7 )
+spawnRange = 300
 
 [node name="skillDuration" type="Timer" parent="SkillHandler/Lust"]
 
@@ -167,7 +184,7 @@ root/root = NodePath("..")
 anims/changeToRed = ExtResource( 10 )
 anims/changeToWhite = ExtResource( 11 )
 playback/active = true
-playback/speed = 1.0
+playback/speed = 1.2
 blend_times = [  ]
 autoplay = ""
 

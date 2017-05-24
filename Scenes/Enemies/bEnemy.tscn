@@ -1,17 +1,17 @@
 [gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://Scripts/enemy.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/enemy_m_looking_right.png" type="Texture" id=2]
+[ext_resource path="res://Animations/b_enemyAnimatedSprite.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://Animations/enemy_attack.tres" type="Animation" id=3]
 [ext_resource path="res://Sprites/Particles/z_letter.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 10.0
-height = 20.0
+radius = 19.1491
+height = 54.0595
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="mEnemy" type="KinematicBody2D"]
 
 z/z = 1
 input/pickable = false
@@ -24,9 +24,11 @@ collision/margin = 0.08
 script/script = ExtResource( 1 )
 attackRange = 50
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="AnimatedSprite" parent="."]
 
-texture = ExtResource( 2 )
+transform/scale = Vector2( 0.5, 0.5 )
+frames = ExtResource( 2 )
+animation = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 

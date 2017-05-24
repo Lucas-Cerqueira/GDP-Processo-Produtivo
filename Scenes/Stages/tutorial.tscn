@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://Scenes/background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/background_1_sky.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/waveHandler.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/enemySpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Enemies/mEnemy.tscn" type="PackedScene" id=9]
 
 [node name="main" type="Node"]
 
@@ -137,13 +138,13 @@ drag_margin/bottom = 1.0
 
 [node name="WaveHandler" type="Node" parent="."]
 
-editor/display_folded = true
 script/script = ExtResource( 7 )
 
 [node name="EnemySpawner" parent="WaveHandler" instance=ExtResource( 8 )]
 
 process/pause_mode = 1
 transform/pos = Vector2( -51.4089, 359.5 )
+enemyType = ExtResource( 9 )
 numberOfEnemies = IntArray( 5, 10, 15 )
 enabled = true
 
@@ -151,6 +152,7 @@ enabled = true
 
 process/pause_mode = 1
 transform/pos = Vector2( 1570, 360 )
+enemyType = ExtResource( 9 )
 numberOfEnemies = IntArray( 5, 10, 15 )
 enabled = true
 
