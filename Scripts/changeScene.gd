@@ -9,7 +9,7 @@ func _ready():
 func _input(event):
 	if (event.type == InputEvent.KEY):
 		if (event.scancode == KEY_U):
-			get_node("/root/GlobalVariables").skillAvailable[1] = true
+			get_node("/root/GlobalVariables").skillAvailable[3] = true
 			goto_scene("res://Scenes/Stages/stage1.tscn")
 
 func goto_scene(path):
