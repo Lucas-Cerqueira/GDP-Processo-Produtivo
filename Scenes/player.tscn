@@ -41,7 +41,7 @@ jumpSpeed = 1000
 transform/scale = Vector2( 0.5, 0.5 )
 frames = ExtResource( 2 )
 animation = "run"
-frame = 4
+frame = 5
 playing = true
 
 [node name="shoot_from" type="Position2D" parent="Sprite"]
@@ -185,6 +185,8 @@ autoplay = ""
 [connection signal="timeout" from="SkillHandler/Wrath/skillDuration" to="SkillHandler/Wrath" method="_on_skillDuration_timeout"]
 
 [connection signal="timeout" from="SkillHandler/Gluttony/skillDuration" to="SkillHandler/Gluttony" method="_on_skillDuration_timeout"]
+
+[connection signal="exit_tree" from="SkillHandler/Lust" to="SkillHandler/Lust" method="_on_Lust_exit_tree"]
 
 [connection signal="timeout" from="SkillHandler/Lust/skillDuration" to="SkillHandler/Lust" method="_on_skillDuration_timeout"]
 

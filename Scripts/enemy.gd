@@ -1,8 +1,12 @@
 extends Node2D
 
-export var attackRange = 10
+var enemyType = "medium"
 
 var health
+var maxHealth
+var speed
+var attackDamage
+var attackRange
 var velocity = Vector2(0.0, 0.0)
 
 var player
@@ -14,14 +18,30 @@ var target
 onready var lazinessParticles = get_node("LazinessParticles")
 onready var GlobalVariables = get_node("/root/GlobalVariables")
 var animationPlayer
+var animatedSprite
 
 func _ready():
-	health = GlobalVariables.enemyMaxHealth
-	enemySpriteSize = get_node("Sprite").get_item_rect().size[0]
+	if (enemyType == "medium"):
+		maxHealth = GlobalVariables.mEnemyMaxHealth
+		attackRange = GlobalVariables.mEnemyAttackRange
+	else:
+		maxHealth = GlobalVariables.bEnemyMaxHealth
+		attackRange = GlobalVariables.bEnemyAttackRange
+	health = maxHealth
+	animatedSprite = get_node("Sprite")
+	enemySpriteSize = animatedSprite.get_item_rect().size[0]
 	animationPlayer = get_node("AnimationPlayer")
 	set_fixed_process(true)
 
 func _fixed_process(delta):
+	if (enemyType == "medium"):
+		speed = GlobalVariables.mEnemySpeed
+		attackDamage = GlobalVariables.mEnemyAttackDamage
+	else:
+		speed = GlobalVariables.bEnemySpeed
+		attackDamage = GlobalVariables.bEnemyAttackDamage
+		
+	
 	target = GlobalVariables.enemyTarget
 	
 	if (not animationPlayer.is_playing()):
@@ -42,16 +62,23 @@ func HuntTarget(delta):
 	# Flip the enemy sprite based on target position
 	if (delta_x > 0):
 		set_scale(Vector2(1.0,1.0))
+		lazinessParticles.set_scale(Vector2(1.0,1.0))
 	else:
 		set_scale(Vector2(-1.0,1.0))
+		lazinessParticles.set_scale(Vector2(-1.0,1.0))
 	
-	if (abs(delta_x) >= GlobalVariables.enemyAttackRange):
+	if (abs(delta_x) >= attackRange):
 		# Move to the right of left based on target position if not in range
-		movement += GlobalVariables.enemySpeed * (delta_x/abs(delta_x))
+		movement += speed * (delta_x/abs(delta_x))
 	else:
 		movement = 0
 		if (target.get_name() == "Player2D"):
 			animationPlayer.play("enemy_attack")
+
+	if (movement == 0):
+		animatedSprite.play("idle")
+	else:
+		animatedSprite.play("run")
 
 	velocity.x = movement
 	var motion = velocity * delta
@@ -62,15 +89,17 @@ func HuntTarget(delta):
 		move(motion)
 
 func AttackTarget():
-	if ((target.get_global_pos()-get_node("Sprite").get_global_pos()).length() <= attackRange):
+	if ((target.get_global_pos()-animatedSprite.get_global_pos()).length() <= attackRange):
 		if (target.has_method("TakeHit")):
-			target.TakeHit (GlobalVariables.enemyAttackDamage)
+			target.TakeHit (attackDamage)
 
-func TakeHit (damage):
-	health -= damage
+func TakeHit (hit):
+	health -= hit
 	if health <= 0:
 		#Antes aqui estava com set_process, o que não fazia nada já que aqui usamos fixed_process ~~
-		get_node("/root/main/WaveHandler").EnemyKilled()
+		var waveHandler = get_node("/root/main/WaveHandler")
+		if (waveHandler):
+			waveHandler.EnemyKilled()
 		set_fixed_process(false)
 		queue_free()
 

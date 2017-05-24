@@ -22,13 +22,12 @@ collision/layers = 2
 collision/mask = 4
 collision/margin = 0.08
 script/script = ExtResource( 1 )
-attackRange = 50
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 
-transform/scale = Vector2( 0.5, 0.5 )
 frames = ExtResource( 2 )
-animation = "idle"
+animation = "run"
+frame = 4
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

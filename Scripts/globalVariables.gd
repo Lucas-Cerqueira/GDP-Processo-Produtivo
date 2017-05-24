@@ -7,10 +7,15 @@ var playerBlastDamage = 50
 var playerBlastSpeed = 600
 
 var enemyTarget
-var enemyMaxHealth = 100
-var enemySpeed = 100
-var enemyAttackDamage = 25
-var enemyAttackRange = 30
+var mEnemyMaxHealth = 100
+var mEnemySpeed = 100
+var mEnemyAttackDamage = 25
+var mEnemyAttackRange = 30
+
+var bEnemyMaxHealth = 200
+var bEnemySpeed = 50
+var bEnemyAttackDamage = 50
+var bEnemyAttackRange = 60
 
 var lustDecoyExplosionDamage = 100
 

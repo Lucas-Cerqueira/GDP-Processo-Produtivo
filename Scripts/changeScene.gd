@@ -1,16 +1,21 @@
 extends Node
 
 var current_scene = null
+var current_stage = 0
+
 func _ready():
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() -1)
 	set_process_input(true)
 
 func _input(event):
-	if (event.type == InputEvent.KEY):
+	if (event.type == InputEvent.KEY && event.is_pressed() && !event.is_echo()):
 		if (event.scancode == KEY_U):
-			get_node("/root/GlobalVariables").skillAvailable[3] = true
-			goto_scene("res://Scenes/Stages/stage1.tscn")
+			current_stage += 1
+			current_stage = clamp (current_stage, 0, 7)
+			if (current_stage % 2 == 1): # If current stage is odd
+				get_node("/root/GlobalVariables").skillAvailable[current_stage/2] = true
+			goto_scene("res://Scenes/Stages/stage"+str(current_stage)+".tscn")
 
 func goto_scene(path):
     call_deferred("_deferred_goto_scene",path)

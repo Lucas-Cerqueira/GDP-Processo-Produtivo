@@ -34,4 +34,14 @@ func _on_skillDuration_timeout():
 	decoyActive = false
 	get_child(0).stop()
 	currentDecoy.Explode()
+	currentDecoy = null
+	GlobalVariables.enemyTarget = get_node("/root/main/Player2D")
+
+
+func _on_Lust_exit_tree():
+	decoyActive = false
+	get_child(0).stop()
+	if (currentDecoy):
+		currentDecoy.Explode()
+		currentDecoy = null
 	GlobalVariables.enemyTarget = get_node("/root/main/Player2D")

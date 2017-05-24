@@ -19,11 +19,14 @@ var shoot_from
 var camera
 var health_bar
 
+var animatedSprite
+
 onready var GlobalVariables = get_node("/root/GlobalVariables")
 
 func _ready():
 	GlobalVariables.enemyTarget = self
 	health = GlobalVariables.playerMaxHealth
+	animatedSprite = get_node("Sprite")
 	shoot_from = get_node("Sprite/shoot_from")
 	camera = get_node("Camera2D")
 	health_bar = get_node("/root/main/UI/HealthBar")
@@ -66,19 +69,23 @@ func MoveCharacter(delta):
 		velocity.y = -jumpSpeed
 
 	var movement = 0
-	var scale = get_node("Sprite").get_scale()
+	var scale = animatedSprite.get_scale()
 	# Handle player movingsideways
 	if Input.is_action_pressed("move_left"):
 		movement -= GlobalVariables.playerSpeed
 		last_dir = -1
 		
-		get_node("Sprite").set_scale(Vector2(-abs(scale.x),scale.y))
+		animatedSprite.set_scale(Vector2(-abs(scale.x),scale.y))
 		
 	elif Input.is_action_pressed("move_right"):
 		movement += GlobalVariables.playerSpeed
 		last_dir = 1
-		get_node("Sprite").set_scale(Vector2(abs(scale.x),scale.y))
+		animatedSprite.set_scale(Vector2(abs(scale.x),scale.y))
 	
+	if (movement == 0):
+		animatedSprite.play("idle")
+	else:
+		animatedSprite.play("run")
 	velocity.x = movement
 	var motion = velocity * delta
 	motion = move (motion)

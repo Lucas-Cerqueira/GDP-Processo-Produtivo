@@ -1,10 +1,8 @@
 extends Node2D
 
-export var enemyType = preload("res://Scenes/Enemies/mEnemy.tscn")
+export var enemy_res = preload("res://Scenes/Enemies/mEnemy.tscn")
 export(IntArray) var numberOfEnemies = [5, 10, 15]
 export var enabled = true
-
-onready var enemy_res = preload("res://Scenes/enemy.tscn")
 
 var timer
 var spawnedEnemies = 0
@@ -28,6 +26,10 @@ func _on_SpawnDelay_timeout():
 func SpawnEnemy():
 	if (spawnedEnemies < numberOfEnemies[waveHandler.GetWaveNumber()-1] && enabled):
 		var enemy = enemy_res.instance()
+		if ("mEnemy" in enemy.get_name()):
+			enemy.enemyType = "medium"
+		else:
+			enemy.enemyType = "big"
 		add_child(enemy)
 		spawnedEnemies += 1
 		timer.start()
