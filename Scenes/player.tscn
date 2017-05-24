@@ -40,8 +40,7 @@ jumpSpeed = 1000
 
 transform/scale = Vector2( 0.5, 0.5 )
 frames = ExtResource( 2 )
-animation = "run"
-frame = 5
+animation = "idle"
 playing = true
 
 [node name="shoot_from" type="Position2D" parent="Sprite"]
@@ -110,6 +109,7 @@ autostart = false
 
 [node name="ParticlesWrath" type="Node2D" parent="."]
 
+editor/display_folded = true
 script/script = ExtResource( 8 )
 
 [node name="SmokeRight" type="Particles2D" parent="ParticlesWrath"]

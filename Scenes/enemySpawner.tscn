@@ -1,11 +1,14 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://Scripts/enemySpawner.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Enemies/mEnemy.tscn" type="PackedScene" id=2]
 
 [node name="EnemySpawner" type="Node2D"]
 
 script/script = ExtResource( 1 )
-numberOfEnemies = 5
+enemy_res = ExtResource( 2 )
+numberOfEnemies = null
+enabled = true
 
 [node name="SpawnDelay" type="Timer" parent="."]
 
