@@ -14,11 +14,8 @@
 
 [node name="Scenario" parent="." instance=ExtResource( 1 )]
 
-editor/display_folded = true
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Scenario"]
 
-editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0

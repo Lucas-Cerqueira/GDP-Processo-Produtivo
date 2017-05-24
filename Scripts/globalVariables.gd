@@ -6,9 +6,13 @@ var playerMeleeDamage = 25
 var playerBlastDamage = 50
 var playerBlastSpeed = 600
 
+var enemyTarget
 var enemyMaxHealth = 100
 var enemySpeed = 100
 var enemyAttackDamage = 25
+var enemyAttackRange = 30
+
+var lustDecoyExplosionDamage = 100
 
 var gravity = 600
 

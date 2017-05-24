@@ -9,48 +9,50 @@ var player
 var playerSpriteSize
 var enemySpriteSize
 
+var target
+
 onready var lazinessParticles = get_node("LazinessParticles")
 onready var GlobalVariables = get_node("/root/GlobalVariables")
 var animationPlayer
 
 func _ready():
 	health = GlobalVariables.enemyMaxHealth
-	player = get_node("/root/main/Player2D")
-	playerSpriteSize = player.get_node("Sprite").get_item_rect().size[0]
 	enemySpriteSize = get_node("Sprite").get_item_rect().size[0]
 	animationPlayer = get_node("AnimationPlayer")
 	set_fixed_process(true)
 
 func _fixed_process(delta):
+	target = GlobalVariables.enemyTarget
+	
 	if (not animationPlayer.is_playing()):
-		HuntPlayer(delta)
+		HuntTarget(delta)
 	
 	if (GlobalVariables.laziness_active):
 		lazinessParticles.set_emitting(true)
 	else:
 		lazinessParticles.set_emitting(false)
 
-func HuntPlayer(delta):
+func HuntTarget(delta):
 	velocity.y += GlobalVariables.gravity*delta
 	
 	var movement = 0
-	var target_pos = player.get_pos()
-	# Player is on the right side of the enemy, so move to the right
-	if (target_pos.x-playerSpriteSize/2.0 > get_global_pos().x+enemySpriteSize/2.0):
-		movement += GlobalVariables.enemySpeed
-		get_node("Sprite").set_scale(Vector2(1.0,1.0))
-		
-	# Player in on the left side of the enemy, so flip it and move
-	# to the left
-	elif (target_pos.x+playerSpriteSize/2.0 < get_global_pos().x-enemySpriteSize/2.0):
-		movement -= GlobalVariables.enemySpeed
-		get_node("Sprite").set_scale(Vector2(-1.0,1.0))
-
-	# Attack
+	var target_pos = target.get_pos()
+	var delta_x = target_pos.x - get_global_pos().x
+	
+	# Flip the enemy sprite based on target position
+	if (delta_x > 0):
+		set_scale(Vector2(1.0,1.0))
+	else:
+		set_scale(Vector2(-1.0,1.0))
+	
+	if (abs(delta_x) >= GlobalVariables.enemyAttackRange):
+		# Move to the right of left based on target position if not in range
+		movement += GlobalVariables.enemySpeed * (delta_x/abs(delta_x))
 	else:
 		movement = 0
-		animationPlayer.play("enemy_attack")
-	
+		if (target.get_name() == "Player2D"):
+			animationPlayer.play("enemy_attack")
+
 	velocity.x = movement
 	var motion = velocity * delta
 	motion = move (motion)
@@ -59,9 +61,10 @@ func HuntPlayer(delta):
 		motion = n.slide(motion)
 		move(motion)
 
-func AttackPlayer():
-	if ((player.get_global_pos()-get_node("Sprite").get_global_pos()).length() <= attackRange):
-		player.TakeHit (GlobalVariables.enemyAttackDamage)
+func AttackTarget():
+	if ((target.get_global_pos()-get_node("Sprite").get_global_pos()).length() <= attackRange):
+		if (target.has_method("TakeHit")):
+			target.TakeHit (GlobalVariables.enemyAttackDamage)
 
 func TakeHit (damage):
 	health -= damage

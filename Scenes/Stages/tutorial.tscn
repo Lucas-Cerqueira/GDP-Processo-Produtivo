@@ -13,11 +13,8 @@
 
 [node name="Scenario" parent="." instance=ExtResource( 1 )]
 
-editor/display_folded = true
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Scenario"]
 
-editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -115,7 +112,6 @@ max_lines_visible = -1
 
 [node name="Player2D" parent="." instance=ExtResource( 6 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 480, 380 )
 jumpSpeed = 230
 
@@ -141,6 +137,7 @@ drag_margin/bottom = 1.0
 
 [node name="WaveHandler" type="Node" parent="."]
 
+editor/display_folded = true
 script/script = ExtResource( 7 )
 
 [node name="EnemySpawner" parent="WaveHandler" instance=ExtResource( 8 )]

@@ -22,6 +22,7 @@ var health_bar
 onready var GlobalVariables = get_node("/root/GlobalVariables")
 
 func _ready():
+	GlobalVariables.enemyTarget = self
 	health = GlobalVariables.playerMaxHealth
 	shoot_from = get_node("Sprite/shoot_from")
 	camera = get_node("Camera2D")
@@ -105,3 +106,14 @@ func TakeHit (damage):
 		health = maxHealth
 		health_bar.UpdateHealthBar (health, maxHealth)
 		set_global_pos(spawnPosition)
+
+func HealPlayer (amount):
+	if (health == 100):
+		return false
+		
+	health += amount
+	health = clamp (health, 0, GlobalVariables.playerMaxHealth)
+	health_bar.UpdateHealthBar (health, GlobalVariables.playerMaxHealth)
+	return true
+	
+	
