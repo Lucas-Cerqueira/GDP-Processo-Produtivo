@@ -1,12 +1,72 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://Scripts/lustDecoy.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/woman.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/explosion.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 131.237, 10 )
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "explosion"
+length = 1.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("WomanSprite:visibility/visible")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ExplosionSprite:visibility/visible")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ExplosionSprite:transform/scale")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0, 0.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.8, 0.8 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ExplosionSprite:visibility/opacity")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = {
+"times": FloatArray( 0.5, 1.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = {
+"times": FloatArray( 1.5 ),
+"transitions": FloatArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
 
 [sub_resource type="Animation" id=2]
 
@@ -15,7 +75,7 @@ length = 2.5
 loop = true
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:transform/pos")
+tracks/0/path = NodePath("WomanSprite:transform/pos")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = {
@@ -40,11 +100,19 @@ collision/layers = 0
 collision/mask = 2
 script/script = ExtResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="WomanSprite" type="Sprite" parent="."]
 
 transform/pos = Vector2( -2.13284, 0 )
 transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
+
+[node name="ExplosionSprite" type="Sprite" parent="."]
+
+visibility/visible = false
+visibility/opacity = 0.0
+transform/pos = Vector2( -2.13284, 0 )
+transform/scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
@@ -58,6 +126,7 @@ _update_shape_index = 0
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
+anims/explosion = SubResource( 3 )
 anims/idle_sexy = SubResource( 2 )
 playback/active = true
 playback/speed = 1.0
