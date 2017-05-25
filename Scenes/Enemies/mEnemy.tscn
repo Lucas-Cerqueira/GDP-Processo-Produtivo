@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://Scripts/enemy.gd" type="Script" id=1]
 [ext_resource path="res://Animations/m_enemyAnimatedSprite.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://Animations/enemy_attack.tres" type="Animation" id=3]
 [ext_resource path="res://Sprites/Particles/z_letter.png" type="Texture" id=4]
+[ext_resource path="res://Sounds/melee_strike.wav" type="Sample" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -169,6 +170,15 @@ tracks/6/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="SampleLibrary" id=4]
+
+samples/melee_strike = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 5 )
+}
+
 [node name="mEnemy" type="KinematicBody2D"]
 
 z/z = 1
@@ -260,5 +270,16 @@ params/final_size = 0.3
 params/hue_variation = 0.0
 params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 4 )
+config/pitch_random = 0.0
 
 

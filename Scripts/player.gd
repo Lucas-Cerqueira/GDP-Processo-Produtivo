@@ -31,6 +31,8 @@ func _ready():
 	camera = get_node("Camera2D")
 	health_bar = get_node("/root/main/UI/HealthBar")
 	
+	set_global_pos(Vector2(800,390))
+	
 	spawnPosition = get_global_pos()
 	
 	set_fixed_process(true)

@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://Scenes/background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/background_1_sky.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/background_2_city.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scripts/waveHandler.gd" type="Script" id=5]
-[ext_resource path="res://Scenes/enemySpawner.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Enemies/mEnemy.tscn" type="PackedScene" id=7]
-[ext_resource path="res://icon.png" type="Texture" id=8]
-[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/waveHandler.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/enemySpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/enemySpawner.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Enemies/mEnemy.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Enemies/bEnemy.tscn" type="PackedScene" id=10]
 
 [node name="main" type="Node"]
 
@@ -107,31 +108,46 @@ drag_margin/top = 1.0
 drag_margin/right = 0.2
 drag_margin/bottom = 1.0
 
+[node name="UI" parent="." instance=ExtResource( 5 )]
+
 [node name="WaveHandler" type="Node" parent="."]
 
-script/script = ExtResource( 5 )
+script/script = ExtResource( 6 )
 
-[node name="EnemySpawner" parent="WaveHandler" instance=ExtResource( 6 )]
+[node name="mEnemySpawner" type="Node2D" parent="WaveHandler" instance=ExtResource( 7 )]
 
 process/pause_mode = 1
 transform/pos = Vector2( -51.4089, 359.5 )
-enemy_res = ExtResource( 7 )
-numberOfEnemies = IntArray( 3, 5, 6 )
+script/script = ExtResource( 8 )
+enemy_res = ExtResource( 9 )
+numberOfEnemies = IntArray( 15, 16, 17 )
 enabled = true
 
-[node name="EnemySpawner1" parent="WaveHandler" instance=ExtResource( 6 )]
+[node name="mEnemySpawner1" type="Node2D" parent="WaveHandler" instance=ExtResource( 7 )]
 
 process/pause_mode = 1
 transform/pos = Vector2( 1570, 360 )
-enemy_res = ExtResource( 7 )
-numberOfEnemies = IntArray( 3, 5, 6 )
+script/script = ExtResource( 8 )
+enemy_res = ExtResource( 9 )
+numberOfEnemies = IntArray( 15, 16, 17 )
 enabled = true
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="bEnemySpawner2" type="Node2D" parent="WaveHandler" instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 444.147, 133.244 )
-texture = ExtResource( 8 )
+process/pause_mode = 1
+transform/pos = Vector2( 1570, 360 )
+script/script = ExtResource( 8 )
+enemy_res = ExtResource( 10 )
+numberOfEnemies = IntArray( 5, 5, 6 )
+enabled = true
 
-[node name="UI" parent="." instance=ExtResource( 9 )]
+[node name="bEnemySpawner2 2" type="Node2D" parent="WaveHandler" instance=ExtResource( 7 )]
+
+process/pause_mode = 1
+transform/pos = Vector2( -51.4089, 359.5 )
+script/script = ExtResource( 8 )
+enemy_res = ExtResource( 10 )
+numberOfEnemies = IntArray( 5, 5, 6 )
+enabled = true
 
 

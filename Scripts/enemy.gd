@@ -15,13 +15,18 @@ var enemySpriteSize
 
 var target
 
-onready var bloodParticles = get_node("Sprite/BloodParticles")
-onready var lazinessParticles = get_node("LazinessParticles")
+var samplePlayer
+var bloodParticles
+var lazinessParticles
 onready var GlobalVariables = get_node("/root/GlobalVariables")
 var animationPlayer
 var animatedSprite
 
 func _ready():
+	samplePlayer = get_node("SamplePlayer2D")
+	bloodParticles = get_node("Sprite/BloodParticles")
+	lazinessParticles = get_node("LazinessParticles")
+
 	if (enemyType == "medium"):
 		maxHealth = GlobalVariables.mEnemyMaxHealth
 		attackRange = GlobalVariables.mEnemyAttackRange
@@ -96,11 +101,15 @@ func AttackTarget():
 
 func TakeHit (hit):
 	health -= hit
+	bloodParticles.set_emitting(false)
 	bloodParticles.set_emitting(true)
+	if (samplePlayer):
+		samplePlayer.play("melee_strike")
 	if health <= 0:
 		#Antes aqui estava com set_process, o que não fazia nada já que aqui usamos fixed_process ~~
 		var waveHandler = get_node("/root/main/WaveHandler")
 		if (waveHandler):
 			waveHandler.EnemyKilled()
 		set_fixed_process(false)
+		lazinessParticles.set_emitting(false)
 		animationPlayer.play("enemyDeath")
