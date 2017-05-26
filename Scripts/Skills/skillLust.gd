@@ -25,7 +25,7 @@ func SpawnDecoy():
 	var direction = get_parent().get_parent().get_node("Sprite").get_scale().x
 	var distance = rand_range (100, spawnRange)
 	currentDecoy.set_global_pos (player_pos + direction*Vector2(distance,0))
-	get_tree().get_root().add_child(currentDecoy)
+	get_node('/root/main').add_child(currentDecoy)
 	
 
 func _on_skillDuration_timeout():

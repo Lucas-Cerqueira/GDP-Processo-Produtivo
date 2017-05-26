@@ -21,7 +21,7 @@ func SpawnFood (amount):
 		var food = food_res.instance()
 		var pos_x = rand_range (sector_size*(i-1)+20, sector_size*i-20)
 		food.set_global_pos(Vector2(pos_x, 410))
-		get_tree().get_root().add_child(food)
+		get_node('/root/main').add_child(food)
 	
 
 func _on_skillDuration_timeout():

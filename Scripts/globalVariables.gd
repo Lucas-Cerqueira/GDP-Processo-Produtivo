@@ -24,6 +24,9 @@ var gravity = 600
 var skillAvailable = [false, false, false, false]
 var skillCharges = [5, 5, 5, 5]
 
+var previous_skillAvailable = [false, false, false, false]
+var previous_skillCharges = [5, 5, 5, 5]
+
 var laziness_active = false
 var wrath_active = false
 

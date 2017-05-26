@@ -84,7 +84,7 @@ func MoveCharacter(delta):
 		last_dir = 1
 		animatedSprite.set_scale(Vector2(abs(scale.x),scale.y))
 	
-	if (movement == 0):
+	if (movement == 0 || not grounded):
 		animatedSprite.play("idle")
 	else:
 		animatedSprite.play("run")
@@ -99,7 +99,7 @@ func MoveCharacter(delta):
 
 func Shoot ():
 	var bullet = bullet_res.instance()
-	get_tree().get_root().add_child(bullet)
+	get_node('/root/main').add_child(bullet)
 	bullet.set_global_pos(shoot_from.get_global_pos())
 	bullet.SetDirection (last_dir)
 
