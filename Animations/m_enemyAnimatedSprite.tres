@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=10 format=1]
+[gd_resource type="SpriteFrames" load_steps=20 format=1]
 
 [ext_resource path="res://Sprites/enemy_m.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/enemy_m_running/enemy_m_running1.png" type="Texture" id=2]
@@ -9,6 +9,16 @@
 [ext_resource path="res://Sprites/enemy_m_running/enemy_m_running6.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/enemy_m_running/enemy_m_running7.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/enemy_m_running/enemy_m_running8.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/enemy_m_hiting/enemy_m_hiting1.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/enemy_m_hiting/enemy_m_hiting2.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/enemy_m_hiting/enemy_m_hiting3.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/enemy_m_hiting/enemy_m_hiting4.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/enemy_m_hiting/enemy_m_hiting5.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/enemy_m_hiting/enemy_m_hiting6.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/enemy_m_hiting/enemy_m_hiting7.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/enemy_m_hiting/enemy_m_hiting8.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/enemy_m_hiting/enemy_m_hiting9.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/enemy_m_hiting/enemy_m_hiting10.png" type="Texture" id=19]
 
 [resource]
 
@@ -22,5 +32,10 @@ animations = [ {
 "loop": true,
 "name": "run",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "attack",
+"speed": 24.0
 } ]
 

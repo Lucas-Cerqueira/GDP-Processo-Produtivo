@@ -14,6 +14,7 @@ var playerSpriteSize
 var enemySpriteSize
 
 var target
+var attacking = false
 
 var samplePlayer
 var bloodParticles
@@ -73,15 +74,20 @@ func HuntTarget(delta):
 		set_scale(Vector2(-1.0,1.0))
 		lazinessParticles.set_scale(Vector2(-1.0,1.0))
 	
-	if (abs(delta_x) >= attackRange):
+	
+	if (abs(delta_x) >= attackRange - 10):
 		# Move to the right of left based on target position if not in range
+		attacking = false
 		movement += speed * (delta_x/abs(delta_x))
 	else:
+		attacking = true
 		movement = 0
 		if (target.get_name() == "Player2D"):
 			animationPlayer.play("enemy_attack")
 
-	if (movement == 0):
+	if (attacking):
+		animatedSprite.play("attack")
+	elif (movement == 0):
 		animatedSprite.play("idle")
 	else:
 		animatedSprite.play("run")

@@ -16,7 +16,7 @@ var mEnemyAttackRange = 30
 var bEnemyMaxHealth = 200
 var bEnemySpeed = 50
 var bEnemyAttackDamage = 50
-var bEnemyAttackRange = 60
+var bEnemyAttackRange = 80
 
 var lustDecoyExplosionDamage = 100
 

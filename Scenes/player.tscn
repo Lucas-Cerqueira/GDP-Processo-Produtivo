@@ -26,7 +26,6 @@ colors = ColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [node name="Player" type="KinematicBody2D"]
 
-editor/display_folded = true
 z/z = 1
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
