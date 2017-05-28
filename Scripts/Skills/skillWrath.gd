@@ -18,11 +18,17 @@ func Activate(index):
 	if (GlobalVariables.skillAvailable[index] && 
 	GlobalVariables.skillCharges[index] > 0 &&
 	not GlobalVariables.wrath_active):
-		GlobalVariables.skillCharges[index] -= 1
+		var x = randi()%100
+		if (GlobalVariables.skillAvailable[4] && x < GlobalVariables.avarice_chance):
+			get_parent().get_parent().TakeHit(GlobalVariables.avarice_health_penalty)
+		else:
+			GlobalVariables.skillCharges[index] -= 1
 		GlobalVariables.wrath_active = true
 		get_child(0).start()
 		
 		print ("Ativou WRATH")
+		baseBlastDamage = GlobalVariables.playerBlastDamage
+		baseMeleeDamage = GlobalVariables.playerMeleeDamage
 		GlobalVariables.playerBlastDamage = baseBlastDamage * DAMAGE_MULTIPLIER
 		GlobalVariables.playerMeleeDamage = baseMeleeDamage * DAMAGE_MULTIPLIER
 		animationPlayer.play("changeToRed")

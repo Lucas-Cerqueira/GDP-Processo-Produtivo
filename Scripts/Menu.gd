@@ -35,13 +35,12 @@ func _input(event):
 			#Lucas: Mudei para usar esse script em todas as mudanças de cena porque ele toma uns cuidados extras
 			get_node("/root/changeScene").goto_next_stage()
 			#get_tree().change_scene("res://Scenes/Stages/tutorial.tscn")
-			print("New Game")
 		if (index == 1):
 			enableSelection = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			get_node("CanvasLayer/Options_panel").show()
 		if (index == 2):
-			print("Credits")	
+			get_node("/root/changeScene").goto_scene("res://Scenes/Screens/credits.tscn")
 		if(index == 3):
 			OS.get_main_loop().quit()
 

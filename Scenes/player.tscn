@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://Scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://Animations/playerAnimatedSprite.tres" type="SpriteFrames" id=2]
@@ -7,10 +7,11 @@
 [ext_resource path="res://Scripts/Skills/skillWrath.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Skills/skillGluttony.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Skills/skillLust.gd" type="Script" id=7]
-[ext_resource path="res://Scripts/Particles/smokeParticle.gd" type="Script" id=8]
-[ext_resource path="res://Sprites/Particles/smokeparticle.png" type="Texture" id=9]
-[ext_resource path="res://Animations/changeToRed.tres" type="Animation" id=10]
-[ext_resource path="res://Animations/changeToWhite.tres" type="Animation" id=11]
+[ext_resource path="res://Scripts/Skills/skillPride.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Particles/smokeParticle.gd" type="Script" id=9]
+[ext_resource path="res://Sprites/Particles/smokeparticle.png" type="Texture" id=10]
+[ext_resource path="res://Animations/changeToRed.tres" type="Animation" id=11]
+[ext_resource path="res://Animations/changeToWhite.tres" type="Animation" id=12]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -25,6 +26,7 @@ colors = ColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [node name="Player" type="KinematicBody2D"]
 
+editor/display_folded = true
 z/z = 1
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -38,6 +40,7 @@ jumpSpeed = 1000
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 
+editor/display_folded = true
 transform/scale = Vector2( 0.5, 0.5 )
 frames = ExtResource( 2 )
 animation = "idle"
@@ -72,7 +75,6 @@ autostart = false
 
 [node name="Wrath" type="Node" parent="SkillHandler"]
 
-editor/display_folded = true
 script/script = ExtResource( 5 )
 
 [node name="skillDuration" type="Timer" parent="SkillHandler/Wrath"]
@@ -107,10 +109,21 @@ wait_time = 10.0
 one_shot = false
 autostart = false
 
+[node name="Avarice" type="Node" parent="SkillHandler"]
+
+[node name="Pride" type="Node" parent="SkillHandler"]
+
+script/script = ExtResource( 8 )
+
+[node name="Envy" type="Node" parent="SkillHandler"]
+
+script/script = ExtResource( 7 )
+spawnRange = 300
+
 [node name="ParticlesWrath" type="Node2D" parent="."]
 
 editor/display_folded = true
-script/script = ExtResource( 8 )
+script/script = ExtResource( 9 )
 
 [node name="SmokeRight" type="Particles2D" parent="ParticlesWrath"]
 
@@ -119,7 +132,7 @@ config/amount = 2
 config/lifetime = 1.0
 config/emitting = false
 config/process_mode = 1
-config/texture = ExtResource( 9 )
+config/texture = ExtResource( 10 )
 params/direction = 90.0
 params/spread = 10.0
 params/linear_velocity = 15.0
@@ -145,7 +158,7 @@ config/amount = 2
 config/lifetime = 1.0
 config/emitting = false
 config/process_mode = 1
-config/texture = ExtResource( 9 )
+config/texture = ExtResource( 10 )
 params/direction = -90.0
 params/spread = 10.0
 params/linear_velocity = 15.0
@@ -169,8 +182,8 @@ color/color_ramp = SubResource( 2 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/changeToRed = ExtResource( 10 )
-anims/changeToWhite = ExtResource( 11 )
+anims/changeToRed = ExtResource( 11 )
+anims/changeToWhite = ExtResource( 12 )
 playback/active = true
 playback/speed = 1.2
 blend_times = [  ]
@@ -189,5 +202,7 @@ autoplay = ""
 [connection signal="exit_tree" from="SkillHandler/Lust" to="SkillHandler/Lust" method="_on_Lust_exit_tree"]
 
 [connection signal="timeout" from="SkillHandler/Lust/skillDuration" to="SkillHandler/Lust" method="_on_skillDuration_timeout"]
+
+[connection signal="exit_tree" from="SkillHandler/Pride" to="SkillHandler/Pride" method="_on_Pride_exit_tree"]
 
 

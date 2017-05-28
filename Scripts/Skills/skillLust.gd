@@ -11,7 +11,11 @@ onready var GlobalVariables = get_node("/root/GlobalVariables")
 func Activate(index):
 	if (GlobalVariables.skillAvailable[index] && GlobalVariables.skillCharges[index] > 0
 	    && not decoyActive):
-		GlobalVariables.skillCharges[index] -= 1
+		var x = randi()%100
+		if (GlobalVariables.skillAvailable[4] && x < GlobalVariables.avarice_chance):
+			get_parent().get_parent().TakeHit(GlobalVariables.avarice_health_penalty)
+		else:
+			GlobalVariables.skillCharges[index] -= 1
 		get_child(0).start()
 		print ("Ativou LUST")
 		SpawnDecoy()

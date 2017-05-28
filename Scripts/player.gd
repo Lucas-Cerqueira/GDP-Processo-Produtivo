@@ -9,8 +9,11 @@ var velocity = Vector2(0.0, 0.0)
 var last_dir = 1
 
 var grounded = false
+var running = false
+var shooting = false
 
-var previous_shooting = false
+var shotDelay
+var shotElapsedTime
 var previous_attacking = false
 
 var spawnPosition
@@ -26,6 +29,8 @@ onready var GlobalVariables = get_node("/root/GlobalVariables")
 func _ready():
 	GlobalVariables.enemyTarget = self
 	health = GlobalVariables.playerMaxHealth
+	shotDelay = 1.0/float(GlobalVariables.playerBlastRateOfFire)
+	shotElapsedTime = shotDelay
 	animatedSprite = get_node("Sprite")
 	shoot_from = get_node("Sprite/shoot_from")
 	camera = get_node("Camera2D")
@@ -43,10 +48,18 @@ func _fixed_process(delta):
 	MoveCharacter(delta)
 	
 	# Handle player shooting
-	var shooting = Input.is_action_pressed("shoot")
-	if (shooting and not previous_shooting):
-		Shoot()
-	previous_shooting = shooting
+	shotElapsedTime += delta
+	shooting = Input.is_action_pressed("shoot")
+	if (shooting):
+		if (running):
+			animatedSprite.play("shoot_run")
+		else:
+			animatedSprite.play("shoot_idle")
+		if (shotElapsedTime >= shotDelay):
+			Shoot()
+			shotElapsedTime = 0
+	else:
+		shotElapsedTime = shotDelay
 	
 	var attacking = Input.is_action_pressed("attack")
 	if (attacking and not previous_attacking):
@@ -76,18 +89,22 @@ func MoveCharacter(delta):
 	if Input.is_action_pressed("move_left"):
 		movement -= GlobalVariables.playerSpeed
 		last_dir = -1
-		
-		animatedSprite.set_scale(Vector2(-abs(scale.x),scale.y))
+		animatedSprite.set_flip_h(true)
 		
 	elif Input.is_action_pressed("move_right"):
 		movement += GlobalVariables.playerSpeed
 		last_dir = 1
-		animatedSprite.set_scale(Vector2(abs(scale.x),scale.y))
+		animatedSprite.set_flip_h(false)
+	
+	
 	
 	if (movement == 0 || not grounded):
+		running = false
 		animatedSprite.play("idle")
 	else:
-		animatedSprite.play("run")
+		running = true
+		if (not shooting):
+			animatedSprite.play("run")
 	velocity.x = movement
 	var motion = velocity * delta
 	motion = move (motion)
@@ -101,6 +118,7 @@ func Shoot ():
 	var bullet = bullet_res.instance()
 	get_node('/root/main').add_child(bullet)
 	bullet.set_global_pos(shoot_from.get_global_pos())
+	bullet.get_node("Sprite").set_flip_h(animatedSprite.is_flipped_h())
 	bullet.SetDirection (last_dir)
 
 func Attack ():
@@ -114,7 +132,7 @@ func TakeHit (damage):
 		var maxHealth = GlobalVariables.playerMaxHealth
 		health = maxHealth
 		health_bar.UpdateHealthBar (health, maxHealth)
-		set_global_pos(spawnPosition)
+		get_node("/root/changeScene").goto_scene("res://Scenes/Screens/gameOver.tscn")
 
 func HealPlayer (amount):
 	if (health == 100):

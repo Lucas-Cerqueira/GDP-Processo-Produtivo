@@ -6,7 +6,11 @@ onready var food_res = preload("res://Scenes/food.tscn")
 
 func Activate(index):
 	if (GlobalVariables.skillAvailable[index] && GlobalVariables.skillCharges[index] > 0):
-		GlobalVariables.skillCharges[index] -= 1
+		var x = randi()%100
+		if (GlobalVariables.skillAvailable[4] && x < GlobalVariables.avarice_chance):
+			get_parent().get_parent().TakeHit(GlobalVariables.avarice_health_penalty)
+		else:
+			GlobalVariables.skillCharges[index] -= 1
 		get_child(0).start()
 		
 		#Generates an integer from 3 to 5

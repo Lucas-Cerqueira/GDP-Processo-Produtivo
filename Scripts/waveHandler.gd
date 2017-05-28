@@ -10,9 +10,13 @@ var enemiesLeft
 var spawnEnable = true
 var counter = 0
 
+var player
+
+onready var GlobalVariables = get_node("/root/GlobalVariables")
 onready var changeScene = get_node("/root/changeScene")
 
 func _ready():
+	player = get_node("/root/main/Player2D")
 	waveInfo = get_node("/root/main/UI/WaveInfo")
 	spawners = get_children()
 	enemiesLeft = 0
@@ -42,6 +46,11 @@ func ChangeScene ():
 	changeScene.goto_next_stage()
 
 func EnemyKilled():
+	# If ENVY is unlocked, player steals some life from the dead enemy
+	var x = randi()%100
+	if (GlobalVariables.skillAvailable[6]):
+		player.HealPlayer (GlobalVariables.envy_heal_amount)
+	
 	enemiesLeft -= 1
 	if (enemiesLeft == 0):
 		if (waveNumber < 3):

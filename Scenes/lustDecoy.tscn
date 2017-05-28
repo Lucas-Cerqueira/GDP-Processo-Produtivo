@@ -132,4 +132,6 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = "idle_sexy"
 
+[connection signal="exit_tree" from="." to="." method="_on_LustDecoy_exit_tree"]
+
 

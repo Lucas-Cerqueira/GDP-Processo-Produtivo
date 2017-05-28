@@ -1,9 +1,10 @@
 extends Node
 
 var current_scene = null
-var current_stage = 0
+var current_stage = -1
 
 func _ready():
+	print ("ready")
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() -1)
 	set_process_input(true)
@@ -17,13 +18,17 @@ func goto_next_stage():
 	GlobalVariables.laziness_active = false
 	GlobalVariables.wrath_active = false
 	current_stage += 1
-	current_stage = clamp (current_stage, 0, 7)
-	if (current_stage > 0 && current_stage < 5):
-		get_node("/root/GlobalVariables").skillAvailable[current_stage-1] = true
+	if (current_stage > 7):
+		get_node("/root/changeScene").goto_scene("res://Scenes/Screens/credits.tscn")
+	else:
+		current_stage = clamp (current_stage, 0, 7)
+		if (current_stage > 0 && current_stage < 8):
+			get_node("/root/GlobalVariables").skillAvailable[current_stage-1] = true
 		
-	GlobalVariables.previous_skillAvailable = GlobalVariables.skillAvailable + []
-	GlobalVariables.previous_skillCharges = GlobalVariables.skillCharges + []	
-	goto_scene("res://Scenes/Stages/stage"+str(current_stage)+".tscn")
+	
+		GlobalVariables.previous_skillAvailable = GlobalVariables.skillAvailable + []
+		GlobalVariables.previous_skillCharges = GlobalVariables.skillCharges + []	
+		goto_scene("res://Scenes/Stages/stage"+str(current_stage)+".tscn")
 
 func restart_stage():
 	GlobalVariables.skillAvailable = GlobalVariables.previous_skillAvailable + []
@@ -32,6 +37,13 @@ func restart_stage():
 	GlobalVariables.wrath_active = false
 	var root = get_tree().get_root()
 	goto_scene("res://Scenes/Stages/stage"+str(current_stage)+".tscn")
+
+func retry_game():
+	GlobalVariables.skillAvailable = [false, false, false, false, false, false, false]
+	GlobalVariables.skillCharges = [5, 5, 5, 5]
+	GlobalVariables.laziness_active = false
+	GlobalVariables.wrath_active = false
+	goto_scene("res://Scenes/Stages/stage0.tscn")
 
 func goto_scene(path):
     call_deferred("_deferred_goto_scene",path)

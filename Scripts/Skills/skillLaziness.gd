@@ -14,7 +14,11 @@ func Activate(index):
 	if (GlobalVariables.skillAvailable[index] &&
 	GlobalVariables.skillCharges[index] > 0 && 
 	not GlobalVariables.laziness_active):
-		GlobalVariables.skillCharges[index] -= 1
+		var x = randi()%100
+		if (GlobalVariables.skillAvailable[4] && x < GlobalVariables.avarice_chance):
+			get_parent().get_parent().TakeHit(GlobalVariables.avarice_health_penalty)
+		else:
+			GlobalVariables.skillCharges[index] -= 1
 		print ("Ativou LAZINESS")
 		GlobalVariables.mEnemySpeed = mEnemySpeed / SLOWDOWN_RATE
 		GlobalVariables.bEnemySpeed = bEnemySpeed / SLOWDOWN_RATE
