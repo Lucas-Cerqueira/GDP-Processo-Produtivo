@@ -9,11 +9,13 @@ var baseMeleeDamage
 
 var animationPlayer
 
+
 func _ready():
 	animationPlayer = get_node("../../AnimationPlayer")
 	baseBlastDamage = GlobalVariables.playerBlastDamage
 	baseMeleeDamage = GlobalVariables.playerMeleeDamage
-	
+
+
 func Activate(index):
 	if (GlobalVariables.skillAvailable[index] && 
 	GlobalVariables.skillCharges[index] > 0 &&
@@ -32,7 +34,8 @@ func Activate(index):
 		GlobalVariables.playerBlastDamage = baseBlastDamage * DAMAGE_MULTIPLIER
 		GlobalVariables.playerMeleeDamage = baseMeleeDamage * DAMAGE_MULTIPLIER
 		animationPlayer.play("changeToRed")
-	
+
+
 func _on_skillDuration_timeout():
 	get_child(0).stop()
 	GlobalVariables.wrath_active = false

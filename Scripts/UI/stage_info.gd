@@ -1,5 +1,6 @@
 extends Label
 
+
 func _ready():
 	var stage = get_node("/root/changeScene").current_stage
 	if (stage == 0):
@@ -7,4 +8,3 @@ func _ready():
 	else:
 		self.show()
 		self.text = "Stage " + str(stage)
-	

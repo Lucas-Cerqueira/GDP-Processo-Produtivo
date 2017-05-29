@@ -4,8 +4,10 @@ onready var GlobalVariables = get_node("/root/GlobalVariables")
 
 var active = false
 
+
 func _ready():
 	set_process(true)
+
 
 func _process(delta):
 	if (GlobalVariables.wrath_active && not active):

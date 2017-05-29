@@ -8,6 +8,7 @@ var currentDecoy = null
 onready var decoy_res = preload ("res://Scenes/lustDecoy.tscn")
 onready var GlobalVariables = get_node("/root/GlobalVariables")
 
+
 func Activate(index):
 	if (GlobalVariables.skillAvailable[index] && GlobalVariables.skillCharges[index] > 0
 	    && not decoyActive):
@@ -21,6 +22,7 @@ func Activate(index):
 		SpawnDecoy()
 		GlobalVariables.enemyTarget = currentDecoy
 
+
 func SpawnDecoy():
 	decoyActive = true
 	currentDecoy = decoy_res.instance()
@@ -30,7 +32,7 @@ func SpawnDecoy():
 	var distance = rand_range (100, spawnRange)
 	currentDecoy.set_global_pos (player_pos + direction*Vector2(distance,0))
 	get_node('/root/main').add_child(currentDecoy)
-	
+
 
 func _on_skillDuration_timeout():
 	decoyActive = false

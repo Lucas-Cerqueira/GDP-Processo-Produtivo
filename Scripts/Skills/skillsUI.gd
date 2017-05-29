@@ -2,6 +2,7 @@ extends Node
 
 onready var GlobalVariables = get_node("/root/GlobalVariables")
 
+
 func _ready():
 	var arrayAvailable = GlobalVariables.skillAvailable
 	for i in range(arrayAvailable.size()):
@@ -10,6 +11,7 @@ func _ready():
 		else:
 			get_child(i).hide()
 	set_process(true)
+
 
 func _process(delta):
 	var arrayCharges = GlobalVariables.skillCharges

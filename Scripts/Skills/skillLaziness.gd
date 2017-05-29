@@ -6,9 +6,11 @@ onready var GlobalVariables = get_node("/root/GlobalVariables")
 var mEnemySpeed
 var bEnemySpeed
 
+
 func _ready():
 	mEnemySpeed = GlobalVariables.mEnemySpeed
 	bEnemySpeed = GlobalVariables.bEnemySpeed
+
 
 func Activate(index):
 	if (GlobalVariables.skillAvailable[index] &&
@@ -24,6 +26,7 @@ func Activate(index):
 		GlobalVariables.bEnemySpeed = bEnemySpeed / SLOWDOWN_RATE
 		GlobalVariables.laziness_active = true
 		get_child(0).start()
+
 
 func _on_skillDuration_timeout():
 	get_child(0).stop()

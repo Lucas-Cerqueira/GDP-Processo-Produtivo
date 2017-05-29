@@ -8,6 +8,7 @@ var baseBlastDamage
 var baseMEnemyDamage
 var baseBEnemyDamage
 
+
 func _ready():
 	baseBlastDamage = GlobalVariables.playerBlastDamage
 	baseMEnemyDamage = GlobalVariables.mEnemyAttackDamage

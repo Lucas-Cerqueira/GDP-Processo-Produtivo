@@ -4,6 +4,7 @@ onready var GlobalVariables = get_node("/root/GlobalVariables")
 
 onready var food_res = preload("res://Scenes/food.tscn")
 
+
 func Activate(index):
 	if (GlobalVariables.skillAvailable[index] && GlobalVariables.skillCharges[index] > 0):
 		var x = randi()%100
@@ -18,6 +19,7 @@ func Activate(index):
 		var amount = randi(3,5)%3 + 3
 		SpawnFood(amount)
 
+
 func SpawnFood (amount):
 	var sector_size = 1500/float(amount)
 	print ("Amount: " + str(amount))
@@ -27,6 +29,7 @@ func SpawnFood (amount):
 		food.set_global_pos(Vector2(pos_x, 410))
 		get_node('/root/main').add_child(food)
 	
+
 
 func _on_skillDuration_timeout():
 	get_child(0).stop()
