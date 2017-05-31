@@ -10,6 +10,7 @@ func _ready():
 func _input(event):
 	if (event.type == InputEvent.KEY && canSkip):
 		Transition.goto_scene("res://Scenes/Menu.tscn")
+		Transition.current_stage = 0
 		canSkip = false
 
 

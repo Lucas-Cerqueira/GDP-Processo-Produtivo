@@ -14,12 +14,12 @@ func _ready():
 	baseMEnemyDamage = GlobalVariables.mEnemyAttackDamage
 	baseBEnemyDamage = GlobalVariables.bEnemyAttackDamage
 	if (GlobalVariables.skillAvailable[5]):
-		GlobalVariables.playerBlastDamage = baseBlastDamage * DAMAGE_MULTIPLIER
+		#GlobalVariables.playerBlastDamage = baseBlastDamage * DAMAGE_MULTIPLIER
 		GlobalVariables.mEnemyAttackDamage = baseMEnemyDamage * DAMAGE_MULTIPLIER
 		GlobalVariables.bEnemyAttackDamage = baseBEnemyDamage * DAMAGE_MULTIPLIER
 
 
 func _on_Pride_exit_tree():
-	GlobalVariables.playerBlastDamage = baseBlastDamage
+	#GlobalVariables.playerBlastDamage = baseBlastDamage
 	GlobalVariables.mEnemyAttackDamage = baseMEnemyDamage
 	GlobalVariables.bEnemyAttackDamage = baseBEnemyDamage

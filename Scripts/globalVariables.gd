@@ -31,10 +31,10 @@ var previous_skillCharges = [5, 5, 5, 5]
 var laziness_active = false
 var wrath_active = false
 
-var avarice_chance = 10  # in percentage
+var avarice_chance = 30  # in percentage
 var avarice_health_penalty = 5   # in points of health
 
-var envy_heal_amount = 2
+var envy_heal_amount = 1
 
 func _ready():
 	set_process(true)

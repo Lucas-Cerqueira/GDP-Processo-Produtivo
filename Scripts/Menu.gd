@@ -33,7 +33,7 @@ func _input(event):
 	if event.is_action("ui_accept") && event.is_pressed() && !event.is_echo():
 		if (index == 0):
 			#Lucas: Mudei para usar esse script em todas as mudanças de cena porque ele toma uns cuidados extras
-			Transition.goto_scene("res://Scenes/Screens/dialogue.tscn")
+			Transition.goto_scene("res://Scenes/Dialogues/dialogue0.tscn")
 			enableSelection = false
 			#get_tree().change_scene("res://Scenes/Stages/tutorial.tscn")
 		if (index == 1):

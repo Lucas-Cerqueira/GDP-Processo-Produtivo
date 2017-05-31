@@ -8,8 +8,8 @@
 [ext_resource path="res://Sprites/pecados/ira_icon.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/pecados/gula_icon.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/pecados/luxuria_icon.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/pecados/avareza.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/pecados/orgulho.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/pecados/orgulho.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/pecados/avareza.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/pecados/inveja.png" type="Texture" id=11]
 [ext_resource path="res://Scripts/UI/pause_menu.gd" type="Script" id=12]
 [ext_resource path="res://Sounds/random_opera.smp" type="Sample" id=13]
@@ -121,7 +121,6 @@ script/script = ExtResource( 4 )
 
 [node name="Laziness" type="Node2D" parent="Skills"]
 
-editor/display_folded = true
 transform/pos = Vector2( 279.569, 39.4922 )
 
 [node name="Icon" type="Sprite" parent="Skills/Laziness"]
@@ -303,24 +302,24 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Avarice" type="Node2D" parent="Skills"]
-
-editor/display_folded = true
-transform/pos = Vector2( 38.7728, 143.402 )
-
-[node name="Icon" type="Sprite" parent="Skills/Avarice"]
-
-transform/pos = Vector2( -2.5094, 18.2229 )
-texture = ExtResource( 9 )
-
 [node name="Pride" type="Node2D" parent="Skills"]
 
 editor/display_folded = true
-transform/pos = Vector2( 80.8184, 144.801 )
+transform/pos = Vector2( 37.448, 144.801 )
 
 [node name="Icon" type="Sprite" parent="Skills/Pride"]
 
 transform/pos = Vector2( 0, 17.1474 )
+texture = ExtResource( 9 )
+
+[node name="Avarice" type="Node2D" parent="Skills"]
+
+editor/display_folded = true
+transform/pos = Vector2( 84.3485, 143.402 )
+
+[node name="Icon" type="Sprite" parent="Skills/Avarice"]
+
+transform/pos = Vector2( -2.5094, 18.2229 )
 texture = ExtResource( 10 )
 
 [node name="Envy" type="Node2D" parent="Skills"]

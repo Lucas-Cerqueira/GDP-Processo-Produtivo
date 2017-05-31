@@ -1,0 +1,172 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://Sprites/Background_Dialogue.png" type="Texture" id=1]
+[ext_resource path="res://Fonts/munro/munro.fnt" type="BitmapFont" id=2]
+[ext_resource path="res://Scripts/Dialogue.gd" type="Script" id=3]
+[ext_resource path="res://Sprites/gabriel_head.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/henry_head.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/miguel_head.png" type="Texture" id=6]
+
+[node name="Polygon2D" type="Polygon2D"]
+
+transform/pos = Vector2( -66.0114, -14.2397 )
+transform/scale = Vector2( 1.08739, 1.0607 )
+polygon = Vector2Array(  )
+uv = Vector2Array(  )
+color = Color( 1, 0, 0.23438, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+
+transform/pos = Vector2( -3.77147, -13.5324 )
+polygon = Vector2Array( 160, 304, 752, 304, 752, 430, 160, 430 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="Sprite" type="Sprite" parent="."]
+
+visibility/behind_parent = true
+transform/pos = Vector2( 428.595, 223.846 )
+texture = ExtResource( 1 )
+modulate = Color( 1, 0, 0, 1 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 164.0
+margin/top = 318.0
+margin/right = 742.0
+margin/bottom = 417.0
+custom_fonts/mono_font = ExtResource( 2 )
+custom_fonts/bold_italics_font = ExtResource( 2 )
+custom_fonts/italics_font = ExtResource( 2 )
+custom_fonts/bold_font = ExtResource( 2 )
+custom_fonts/normal_font = ExtResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+bbcode/enabled = true
+bbcode/bbcode = ""
+visible_characters = -1
+script/script = ExtResource( 3 )
+dialogue_text = "M:W-w-what is that? Blood? Do I bleed?
+H:Yes you do. A miserable human wielding the soul of your pure brother opened a wound on you. Dying is what sought. Face your own face, Death..
+M:You be-became, you know that, right?
+M:You are just as wicked as I am. 
+H:I am not. I'm blessed with the pure one's soul.
+M:I was once pure too. So were you, probably.. You corrupted yourself into this.
+M:You fought f-for the purity and now there is none.
+H:Shut up!
+M:You put yourself in the misery I wanted you to win... I won..
+M:[Michael takes a last breath and closes his eyes forever]
+H: ....
+H: Was he right?
+H: Have I defiled myself into darkness?
+H: Only time will tell..."
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.02
+one_shot = false
+autostart = true
+
+[node name="IconGabriel" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 108.136, 338.903 )
+transform/scale = Vector2( 1.8, 1.8 )
+texture = ExtResource( 4 )
+
+[node name="IconHenry" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 108.136, 338.903 )
+transform/scale = Vector2( 1.8, 1.8 )
+texture = ExtResource( 5 )
+
+[node name="IconMichael" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 108.136, 338.903 )
+transform/scale = Vector2( 1.8, 1.8 )
+texture = ExtResource( 6 )
+
+[node name="LabelGabriel" type="Label" parent="."]
+
+visibility/visible = false
+rect/scale = Vector2( 1.1, 1.1 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 163.0
+margin/top = 296.0
+margin/right = 223.0
+margin/bottom = 318.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Gabriel:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="LabelHenry" type="Label" parent="."]
+
+visibility/visible = false
+rect/scale = Vector2( 1.1, 1.1 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 163.0
+margin/top = 296.0
+margin/right = 223.0
+margin/bottom = 318.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Henry:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="LabelMichael" type="Label" parent="."]
+
+visibility/visible = false
+rect/scale = Vector2( 1.1, 1.1 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 163.0
+margin/top = 296.0
+margin/right = 225.0
+margin/bottom = 318.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Michael:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="timeout" from="Timer" to="RichTextLabel" method="_on_Timer_timeout"]
+
+

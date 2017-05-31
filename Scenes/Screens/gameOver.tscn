@@ -257,8 +257,6 @@ color/color = Color( 1, 0, 0, 1 )
 
 [node name="Scenario" parent="." instance=ExtResource( 4 )]
 
-editor/display_folded = true
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Scenario"]
 
 layer = -1

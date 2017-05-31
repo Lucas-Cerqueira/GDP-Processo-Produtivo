@@ -2,7 +2,7 @@ extends CanvasLayer
 
 var scene_path = ""
 var current_scene = null
-var current_stage = 0
+var current_stage = -1
 
 func _ready():
 	var root = get_tree().get_root()
@@ -12,12 +12,16 @@ func _ready():
 func _input(event):
 	if (event.type == InputEvent.KEY && event.is_pressed() && !event.is_echo()):
 		if (event.scancode == KEY_U):
-			goto_next_stage()
-			
+			goto_next_dialogue()
+
+func goto_next_dialogue():
+	current_stage += 1
+	goto_scene("res://Scenes/Dialogues/dialogue"+str(current_stage)+".tscn")
+	
 func goto_next_stage():
 	GlobalVariables.laziness_active = false
 	GlobalVariables.wrath_active = false
-	current_stage += 1
+	#current_stage += 1
 	if (current_stage > 7):
 		goto_scene("res://Scenes/Screens/credits.tscn")
 	else:
@@ -39,11 +43,12 @@ func restart_stage():
 	goto_scene("res://Scenes/Stages/stage"+str(current_stage)+".tscn")
 
 func retry_game():
-	GlobalVariables.skillAvailable = [false, false, false, false, false, false, false]
+	current_stage = 1
+	GlobalVariables.skillAvailable = [true, false, false, false, false, false, false]
 	GlobalVariables.skillCharges = [5, 5, 5, 5]
 	GlobalVariables.laziness_active = false
 	GlobalVariables.wrath_active = false
-	goto_scene("res://Scenes/Stages/stage0.tscn")
+	goto_scene("res://Scenes/Stages/stage1.tscn")
 
 func goto_scene (path):
 	scene_path = path

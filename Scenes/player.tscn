@@ -108,11 +108,11 @@ wait_time = 10.0
 one_shot = false
 autostart = false
 
-[node name="Avarice" type="Node" parent="SkillHandler"]
-
 [node name="Pride" type="Node" parent="SkillHandler"]
 
 script/script = ExtResource( 8 )
+
+[node name="Avarice" type="Node" parent="SkillHandler"]
 
 [node name="Envy" type="Node" parent="SkillHandler"]
 

@@ -40,7 +40,8 @@ func StartWave (number):
 		enemiesLeft += node.numberOfEnemies[waveNumber-1]
 
 func ChangeScene ():
-	Transition.goto_next_stage()
+	#Transition.goto_next_stage()
+	Transition.goto_next_dialogue()
 
 func EnemyKilled():
 	# If ENVY is unlocked, player steals some life from the dead enemy
