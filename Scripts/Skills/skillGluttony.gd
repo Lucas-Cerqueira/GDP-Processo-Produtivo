@@ -1,7 +1,5 @@
 extends Node
 
-onready var GlobalVariables = get_node("/root/GlobalVariables")
-
 onready var food_res = preload("res://Scenes/food.tscn")
 
 

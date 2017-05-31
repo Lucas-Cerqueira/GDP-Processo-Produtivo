@@ -3,8 +3,6 @@ extends Node2D
 var direction = 1
 var hit = false
 
-onready var GlobalVariables = get_node("/root/GlobalVariables")
-
 func _ready():
 	set_process(true)
 

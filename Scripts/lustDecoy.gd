@@ -10,7 +10,7 @@ func _ready():
 func Explode():
 	if (not enable):
 		return
-	var baseDamage = get_node("/root/GlobalVariables").lustDecoyExplosionDamage
+	var baseDamage = GlobalVariables.lustDecoyExplosionDamage
 	var array = get_overlapping_bodies()
 	set_enable_monitoring(false)
 	animationPlayer.play("explosion")

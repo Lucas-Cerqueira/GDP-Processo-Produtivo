@@ -24,8 +24,6 @@ var health_bar
 
 var animatedSprite
 
-onready var GlobalVariables = get_node("/root/GlobalVariables")
-
 func _ready():
 	GlobalVariables.enemyTarget = self
 	health = GlobalVariables.playerMaxHealth
@@ -132,7 +130,7 @@ func TakeHit (damage):
 		var maxHealth = GlobalVariables.playerMaxHealth
 		health = maxHealth
 		health_bar.UpdateHealthBar (health, maxHealth)
-		get_node("/root/changeScene").goto_scene("res://Scenes/Screens/gameOver.tscn")
+		Transition.goto_scene("res://Scenes/Screens/gameOver.tscn")
 
 func HealPlayer (amount):
 	if (health == 100):

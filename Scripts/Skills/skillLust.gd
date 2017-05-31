@@ -6,7 +6,6 @@ var decoyActive = false
 var currentDecoy = null
 
 onready var decoy_res = preload ("res://Scenes/lustDecoy.tscn")
-onready var GlobalVariables = get_node("/root/GlobalVariables")
 
 
 func Activate(index):

@@ -15,7 +15,7 @@
 [ext_resource path="res://Sounds/random_opera.smp" type="Sample" id=13]
 [ext_resource path="res://Scripts/Songs/autoPlay.gd" type="Script" id=14]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 
 resource/name = "highlight"
 length = 1.0
@@ -32,7 +32,7 @@ tracks/0/keys = {
 "values": [ true, false, true, false, true, false, true, false, true, false, true ]
 }
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=2]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -45,7 +45,7 @@ border_size = 0
 border_blend = true
 draw_bg = true
 
-[sub_resource type="SampleLibrary" id=5]
+[sub_resource type="SampleLibrary" id=3]
 
 samples/random_opera = {
 "db": 0.0,
@@ -109,7 +109,7 @@ max_lines_visible = -1
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/highlight = SubResource( 3 )
+anims/highlight = SubResource( 1 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -336,7 +336,6 @@ texture = ExtResource( 11 )
 [node name="Pause_panel" type="Panel" parent="."]
 
 process/pause_mode = 2
-editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -346,7 +345,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 768.0
 margin/bottom = 430.0
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 2 )
 script/script = ExtResource( 12 )
 
 [node name="Resume_button" type="Button" parent="Pause_panel"]
@@ -367,25 +366,6 @@ shortcut = null
 text = "Resume"
 flat = false
 
-[node name="RestartStage_button" type="Button" parent="Pause_panel"]
-
-focus_neighbour/top = NodePath("../Resume_button")
-focus_neighbour/bottom = NodePath("../Exit_button")
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 339.0
-margin/top = 214.0
-margin/right = 463.0
-margin/bottom = 242.0
-custom_fonts/font = ExtResource( 2 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Restart Stage"
-flat = false
-
 [node name="Exit_button" type="Button" parent="Pause_panel"]
 
 focus_neighbour/top = NodePath("../RestartStage_button")
@@ -395,9 +375,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 377.0
-margin/top = 258.0
+margin/top = 220.0
 margin/right = 421.0
-margin/bottom = 286.0
+margin/bottom = 248.0
 custom_fonts/font = ExtResource( 2 )
 toggle_mode = false
 enabled_focus_mode = 2
@@ -413,9 +393,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 340.0
-margin/top = 314.0
+margin/top = 274.0
 margin/right = 464.0
-margin/bottom = 344.0
+margin/bottom = 304.0
 custom_fonts/font = ExtResource( 2 )
 toggle_mode = true
 is_pressed = true
@@ -428,7 +408,7 @@ align = 0
 [node name="SamplePlayer" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = SubResource( 5 )
+config/samples = SubResource( 3 )
 default/volume_db = -18.0
 default/pitch_scale = 1.0
 default/pan = 0.0
@@ -444,8 +424,6 @@ default/chorus_send = 0.0
 script/script = ExtResource( 14 )
 
 [connection signal="button_down" from="Pause_panel/Resume_button" to="Pause_panel" method="_on_Resume_button_button_down"]
-
-[connection signal="button_down" from="Pause_panel/RestartStage_button" to="Pause_panel" method="_on_RestartStage_button_button_down"]
 
 [connection signal="button_down" from="Pause_panel/Exit_button" to="Pause_panel" method="_on_Exit_button_button_down"]
 

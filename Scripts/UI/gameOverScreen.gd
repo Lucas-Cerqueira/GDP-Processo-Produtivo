@@ -7,7 +7,7 @@ func _ready():
 
 func _on_Retry_button_down():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	get_node("/root/changeScene").retry_game()
+	Transition.retry_game()
 
 
 func _on_Exit_button_down():

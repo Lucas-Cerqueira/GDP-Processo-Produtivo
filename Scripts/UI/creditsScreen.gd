@@ -9,7 +9,8 @@ func _ready():
 
 func _input(event):
 	if (event.type == InputEvent.KEY && canSkip):
-		get_node("/root/changeScene").goto_scene("res://Scenes/Menu.tscn")
+		Transition.goto_scene("res://Scenes/Menu.tscn")
+		canSkip = false
 
 
 func _on_Timer_timeout():

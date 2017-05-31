@@ -19,7 +19,7 @@ var attacking = false
 var samplePlayer
 var bloodParticles
 var lazinessParticles
-onready var GlobalVariables = get_node("/root/GlobalVariables")
+
 var animationPlayer
 var animatedSprite
 

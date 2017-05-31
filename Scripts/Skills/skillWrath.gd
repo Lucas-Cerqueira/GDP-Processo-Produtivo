@@ -2,8 +2,6 @@ extends Node
 
 const DAMAGE_MULTIPLIER = 2
 
-onready var GlobalVariables = get_node("/root/GlobalVariables")
-
 var baseBlastDamage
 var baseMeleeDamage
 

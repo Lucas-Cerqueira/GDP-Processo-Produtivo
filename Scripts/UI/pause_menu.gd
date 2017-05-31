@@ -34,7 +34,7 @@ func _on_RestartStage_button_button_down():
 	paused = false
 	get_tree().set_pause(false)
 	self.hide()
-	get_node("/root/changeScene").restart_stage()
+	Transition.restart_stage()
 
 
 func _on_Exit_button_button_down():

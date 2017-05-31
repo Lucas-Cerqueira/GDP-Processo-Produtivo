@@ -12,9 +12,6 @@ var counter = 0
 
 var player
 
-onready var GlobalVariables = get_node("/root/GlobalVariables")
-onready var changeScene = get_node("/root/changeScene")
-
 func _ready():
 	player = get_node("/root/main/Player2D")
 	waveInfo = get_node("/root/main/UI/WaveInfo")
@@ -43,7 +40,7 @@ func StartWave (number):
 		enemiesLeft += node.numberOfEnemies[waveNumber-1]
 
 func ChangeScene ():
-	changeScene.goto_next_stage()
+	Transition.goto_next_stage()
 
 func EnemyKilled():
 	# If ENVY is unlocked, player steals some life from the dead enemy

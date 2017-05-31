@@ -1,7 +1,5 @@
 extends Node
 
-onready var GlobalVariables = get_node("/root/GlobalVariables")
-
 var previousPressed = false
 
 

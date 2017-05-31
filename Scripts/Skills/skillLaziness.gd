@@ -2,7 +2,6 @@ extends Node
 
 const SLOWDOWN_RATE = 2.0
 
-onready var GlobalVariables = get_node("/root/GlobalVariables")
 var mEnemySpeed
 var bEnemySpeed
 
